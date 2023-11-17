@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 export function InitialButtons() {
     return (
+        <>
         <Group style={{ marginTop: '30px', justifyContent: 'center', columnGap: '100px' }}>
             <Link
               style={{ textDecoration: 'none', color: 'white' }}
@@ -32,5 +33,20 @@ export function InitialButtons() {
                 </Button>
             </Link>
         </Group>
+        <Group style={{justifyContent: 'center', marginTop: '30px'}}>
+          <Link
+            style={{ textDecoration: 'none', color: 'white' }}
+            href="/manageAssets"
+          >
+            <Button
+              variant="gradient"
+              gradient={{ from: 'gold', to: 'orange', deg: 90 }}
+              size="xl"
+            >
+              Manage Assets
+            </Button>
+          </Link>
+        </Group>
+      </>
     );
 }
