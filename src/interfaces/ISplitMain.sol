@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity 0.8.4;
 
-// import {address} from "@rari-capital/solmate/src/tokens/address.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 /**
  * @title ISplitMain
@@ -58,18 +58,18 @@ interface ISplitMain {
         address distributorAddress
     ) external;
 
-    function distributeaddress(
+    function distributeERC20(
         address split,
-        address token,
+        ERC20 token,
         address[] calldata accounts,
         uint32[] calldata percentAllocations,
         uint32 distributorFee,
         address distributorAddress
     ) external;
 
-    function updateAndDistributeaddress(
+    function updateAndDistributeERC20(
         address split,
-        address token,
+        ERC20 token,
         address[] calldata accounts,
         uint32[] calldata percentAllocations,
         uint32 distributorFee,
@@ -79,7 +79,7 @@ interface ISplitMain {
     function withdraw(
         address account,
         uint256 withdrawETH,
-        address[] calldata tokens
+        ERC20[] calldata tokens
     ) external;
 
     /**
@@ -132,15 +132,15 @@ interface ISplitMain {
         address indexed distributorAddress
     );
 
-    /** @notice emitted after each successful address balance split
+    /** @notice emitted after each successful ERC20 balance split
      *  @param split Address of the split that distributed its balance
-     *  @param token Address of address distributed
-     *  @param amount Amount of address distributed
+     *  @param token Address of ERC20 distributed
+     *  @param amount Amount of ERC20 distributed
      *  @param distributorAddress Address to credit distributor fee to
      */
-    event Distributeaddress(
+    event DistributeERC20(
         address indexed split,
-        address indexed token,
+        ERC20 indexed token,
         uint256 amount,
         address indexed distributorAddress
     );
@@ -148,13 +148,13 @@ interface ISplitMain {
     /** @notice emitted after each successful withdrawal
      *  @param account Address that funds were withdrawn to
      *  @param ethAmount Amount of ETH withdrawn
-     *  @param tokens Addresses of addresss withdrawn
-     *  @param tokenAmounts Amounts of corresponding addresss withdrawn
+     *  @param tokens Addresses of ERC20s withdrawn
+     *  @param tokenAmounts Amounts of corresponding ERC20s withdrawn
      */
     event Withdrawal(
         address indexed account,
         uint256 ethAmount,
-        address[] tokens,
+        ERC20[] tokens,
         uint256[] tokenAmounts
     );
 }
