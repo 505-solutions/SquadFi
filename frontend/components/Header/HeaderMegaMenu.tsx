@@ -30,10 +30,10 @@ import {
   IconChevronDown,
 } from '@tabler/icons-react';
 import { useContext, useState } from 'react';
-import { useSDK } from '@metamask/sdk-react';
-
+import { useWeb3Modal } from '@web3modal/ethers5/react'
 import classes from './HeaderMegaMenu.module.css';
 import { globalPropsContext } from '@/contexts/globalContext';
+import { useWeb3ModalAccount } from '@web3modal/ethers5/react'
 
 const mockdata = [
   {
@@ -72,8 +72,10 @@ export function HeaderMegaMenu() {
     const [drawerOpened, setDrawerOpened] = useState(false);
     const [linksOpened, setLinksOpened] = useState(false);
     const theme = useMantineTheme();
-    const { address, setAddress } = useContext(globalPropsContext);
-    const { sdk } = useSDK();
+    const { open, close } = useWeb3Modal()
+    const { address, chainId, isConnected } = useWeb3ModalAccount()
+
+
 
     async function connect() {
         try {
@@ -169,11 +171,11 @@ export function HeaderMegaMenu() {
 
           <Group visibleFrom="sm">
             { address ?
-              <Button color="green">
+              <Button color="green" onClick={() => open()}>
                 {`${address.substring(0, 7)}...${address.substring(address.length - 5, address.length)}`}
               </Button>
               :
-              <Button onClick={connect}>Connect wallet</Button>
+              <Button onClick={() => open()}>Connect wallet</Button>
             }
           </Group>
 

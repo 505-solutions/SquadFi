@@ -9,6 +9,7 @@ import { SafeTransactionDataPartial, OperationType } from '@safe-global/safe-cor
 import { FooterCentered } from '@/components/Footer/FooterCentered';
 import { HeaderMegaMenu } from '@/components/Header/HeaderMegaMenu';
 import { Button } from '@mantine/core';
+import { useSDK } from '@metamask/sdk-react';
 
 
 interface EthClient {
@@ -18,13 +19,11 @@ interface EthClient {
 
 
 export default function HomePage() {
-
+  const { sdk, provider } = useSDK();
 
   const proposeToGnosis = async () => {
     console.log('Propose to Gnosis')
-    const provider = new ethers.providers.Web3Provider((window as any).ethereum);
-    await (window as any).ethereum.request({ method: 'eth_requestAccounts' });
-      
+          
     // Get signer using MetaMask
     const signer = provider.getSigner();
 
