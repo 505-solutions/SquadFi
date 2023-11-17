@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.13;
 
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -58,9 +58,11 @@ contract RewardShareNFT is ERC1155, Ownable, ERC1155Burnable {
             revert ERC1155MissingApprovalForAll(sender, from);
         }
 
-        for (uint i = 0; i < ids.length; i++) {
-            s_userShares[to][ids[i]].push(splitsContractes[i]);
-        }
+        s_userShares[to][id].push(
+            s_userShares[from][id][s_userShares[from][id].length]
+        );
+
+        s_userShares[from][id].pop();
 
         _safeTransferFrom(from, to, id, amount, data);
     }
@@ -73,14 +75,26 @@ contract RewardShareNFT is ERC1155, Ownable, ERC1155Burnable {
         address[] memory splitsContractes,
         bytes memory data
     ) public onlyOwner {
-        // TODO: This should updateSplits in the SplitMain contract
-
         address sender = _msgSender();
         if (from != sender && !isApprovedForAll(from, sender)) {
             revert ERC1155MissingApprovalForAll(sender, from);
         }
 
-        _safeTransferFrom(from, to, id, amount, data);
+        // TODO: This should updateSplits in the SplitMain contract
+
+        for (uint i = 0; i < ids.length; i++) {
+            uint256 id = ids[i];
+            address splitterAddress = s_userShares[from][id][
+                s_userShares[from][id].length
+            ];
+
+            // TODO: SplitsMain(addr).updateSplit()
+
+            s_userShares[to][id].push(splitterAddress);
+            s_userShares[from][id].pop();
+        }
+
+        _safeBatchTransferFrom(from, to, ids, values, data);
     }
 }
 
