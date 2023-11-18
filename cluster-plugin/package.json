@@ -1,0 +1,14 @@
+{
+  "name": "obol-cluster-web3inbox",
+  "version": "1.0.0",
+  "description": "A plugin for Obol cluster for integrating with web3inbex",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
