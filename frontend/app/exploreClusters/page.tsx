@@ -120,27 +120,24 @@ export default function ExploreClusters() {
       </Group>
 
       { selectedId != -1 &&
-        <Modal opened={opened} onClose={close} title="View cluster" centered size="xl">
+        <Modal opened={opened} onClose={close} centered size="xl" color="red">
             <Group style={{alignItems: 'center'}}>
-              <h2>{clusters[selectedId].name}</h2>
+              <h2 style={{color: '#E2D04B'}}>{clusters[selectedId].name}</h2>
               <p>(Num validators: {clusters[selectedId].validators.length})</p>
             </Group>
             { clusters[selectedId].validators.map((validator) => (
               <Group key={validator.id}>
-              <IconUserBolt />
+              <IconUserBolt color='#E2D04B' />
               <p style={{color: '#E2D04B'}}>
-                Validator{validator.id}
+                <b>Validator{validator.id}</b>
               </p>
-              <p style={{color: '#E2D04B'}}>
-                <strong>{validator.name}</strong>
-              </p>
-              <p style={{color: '#E2D04B'}}>
+              <p>
                 <i>{validator.addr}</i>
               </p>
               { validator.status == "ready" ?
-                <Badge color="green">Ready</Badge>
+                <Badge color="green" style={{color: "black"}}>Ready</Badge>
                 :
-                <Badge color="yellow">Wait</Badge>
+                <Badge color="red">Wait</Badge>
               }
             </Group>
             ))}
@@ -157,7 +154,7 @@ export default function ExploreClusters() {
                 href="http://74.234.16.180:3000/d/laEp8vupp/local-docker-cluster-dashboard?orgId=1&refresh=10s"
                 target="_blank"
               >
-                <Button>View cluster dashboard</Button>
+                <Button color="#E2D04B" style={{color: 'black'}}>View cluster dashboard</Button>
               </Link>
             </Group>
         </Modal>
