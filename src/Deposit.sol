@@ -20,15 +20,11 @@ contract SquadDeposits {
     mapping(address => uint256[]) public s_userContributedTo;
     mapping(uint256 => address[]) public s_validatorContributors;
 
-    address immutable spliterAddress;
-
-    constructor(address _spliterAddress) {
-        spliterAddress = _spliterAddress;
-    }
-
     // ! Make a contribution to a validator
     function contributeToValidator(uint256 validatorId) external payable {
         uint256 totalContributions = s_validatorTotalContributions[validatorId];
+
+        // TODO: Verify the msg.value is in denomination of 0.32 eth (1%)
 
         s_validatorContributors[validatorId].push(msg.sender);
 
@@ -72,6 +68,14 @@ contract SquadDeposits {
 
     //
     // ! register validator (link deposit-data.json and multisig)
+
+    //     function createOWRecipient(
+    //     address recoveryAddress,
+    //     address principalRecipient,
+    //     address rewardRecipient,
+    //     uint256 amountOfPrincipalStake
+    //   ) external returns (OptimisticWithdrawalRecipient owr)
+
     function registerValidator(
         uint256 validatorId,
         address[] calldata feeAddresses,
@@ -121,13 +125,6 @@ contract SquadDeposits {
             uint256[] memory feeRecipients,
             uint32[] memory feePercentages
         ) = splitValidatorFees(validatorId, validatorInfo);
-
-        address newSpliterAddress = ISplitMain(spliterAddress).createSplit(
-            feeRecipients,
-            feePercentages,
-            0,
-            address(0)
-        );
 
         // address[] feeAddresses;
         // uint32[] percentAllocations;

@@ -4,44 +4,65 @@ pragma solidity ^0.8.13;
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Burnable.sol";
+import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155URIStorage.sol";
 
-contract RewardShareNFT is ERC1155, Ownable, ERC1155Burnable {
-    mapping(address => mapping(uint256 => address[])) public s_userShares; // user > nftIn > splitAddress
+import "./interfaces/ISplitMain.sol";
 
-    constructor(address initialOwner) ERC1155("") Ownable(initialOwner) {}
+contract RewardShareNFT is ERC1155URIStorage, Ownable, ERC1155Burnable {
+    mapping(uint256 => address) s_feeSplitter; // validatorId -> spliter address
+    mapping(uint256 => address[]) public s_validatorSplitFeeAddresses; // validator ID -> fee addresses
+    mapping(uint256 => uint32[]) public s_validatorSplitFeePercentages; // validator ID -> fee percentage
 
-    function setURI(string memory newuri) public onlyOwner {
-        _setURI(newuri);
+    // maps the user to all the validators where he has specific percentages
+    mapping(address => mapping(uint256 => uint256[])) s_userFeeShares; // user => id(=percentage) -> validatorIds
+
+    address immutable spliterAddress;
+
+    constructor(address initialOwner) ERC1155("") Ownable(initialOwner) {
+        spliterAddress = _spliterAddress;
     }
 
-    function mint(
-        address account,
-        uint256 id,
-        uint256 amount,
-        address splitsContract,
-        bytes memory data
+    uint256 constant spliterScaleFactor = 1000000;
+
+    function setURI(
+        uint256[] memory tokenIds,
+        string[] memory newuris
     ) public onlyOwner {
-        // TODO: This should be called together with createSplit
+        require(tokenIds.length <= newuris.length, "not enough uris");
 
-        s_userShares[account][id].push(splitsContract);
-
-        _mint(account, id, amount, data);
+        for (uint i = 0; i < tokenIds.length; i++) {
+            _setURI(tokenIds[i], newuris[i]);
+        }
     }
 
     function mintBatch(
-        address to,
-        uint256[] memory ids,
-        uint256[] memory amounts,
-        address[] memory splitsContractes,
-        bytes memory data
+        uint256 validatorId,
+        address[] feeRecipients,
+        uint32[] feePercentages
     ) public onlyOwner {
-        // TODO: This should be called together with createSplit
+        require(
+            s_validatorSplitFeeAddresses[validatorId].length == 0,
+            "batch already minted"
+        );
 
-        for (uint i = 0; i < ids.length; i++) {
-            s_userShares[to][ids[i]].push(splitsContractes[i]);
+        for (uint i = 0; i < feeRecipients.length; i++) {
+            address feeRecipient = feeRecipients[i];
+            uint32 id = feePercentages[i] / spliterScaleFactor;
+
+            _mint(feeRecipient, id, 1, data);
+
+            addToStorageArray(s_userFeeShares[feeRecipient][id], validatorId);
         }
+        s_validatorSplitFeeAddresses[validatorId] = feeRecipients;
+        s_validatorSplitFeePercentages[validatorId] = feePercentages;
 
-        _mintBatch(to, ids, amounts, data);
+        address newSpliterAddress = ISplitMain(spliterAddress).createSplit(
+            feeRecipients,
+            feePercentages,
+            0,
+            address(this)
+        );
+        s_feeSplitter[validatorId] = newSpliterAddress;
     }
 
     function safeTransferFrom(
@@ -51,18 +72,12 @@ contract RewardShareNFT is ERC1155, Ownable, ERC1155Burnable {
         uint256 amount,
         bytes memory data
     ) public override onlyOwner {
-        // TODO: This should updateSplits in the SplitMain contract
-
         address sender = _msgSender();
         if (from != sender && !isApprovedForAll(from, sender)) {
             revert ERC1155MissingApprovalForAll(sender, from);
         }
 
-        s_userShares[to][id].push(
-            s_userShares[from][id][s_userShares[from][id].length]
-        );
-
-        s_userShares[from][id].pop();
+        internalTransferUpdates(from, to, id, amount);
 
         _safeTransferFrom(from, to, id, amount, data);
     }
@@ -72,40 +87,141 @@ contract RewardShareNFT is ERC1155, Ownable, ERC1155Burnable {
         address to,
         uint256[] memory ids,
         uint256[] memory values,
-        address[] memory splitsContractes,
         bytes memory data
-    ) public onlyOwner {
+    ) public override onlyOwner {
         address sender = _msgSender();
         if (from != sender && !isApprovedForAll(from, sender)) {
             revert ERC1155MissingApprovalForAll(sender, from);
         }
 
-        // TODO: This should updateSplits in the SplitMain contract
-
         for (uint i = 0; i < ids.length; i++) {
-            uint256 id = ids[i];
-            address splitterAddress = s_userShares[from][id][
-                s_userShares[from][id].length
-            ];
-
-            // TODO: SplitsMain(addr).updateSplit()
-
-            s_userShares[to][id].push(splitterAddress);
-            s_userShares[from][id].pop();
+            internalTransferUpdates(from, to, ids[i], values[i]);
         }
 
         _safeBatchTransferFrom(from, to, ids, values, data);
     }
+
+    // * HELPERS ============================================================
+
+    function internalTransferUpdates(
+        address from,
+        address to,
+        uint256 id,
+        uint256 amount
+    ) {
+        uint256 count = 0;
+        while (count < amount) {
+            uint256 validatorId;
+            for (uint i = 0; i < s_userFeeShares[from][id].length; i++) {
+                validatorId = s_userFeeShares[from][id][i];
+
+                if (validatorId != 0) {
+                    updateUserShare(validatorId, from, to, id);
+
+                    count++;
+                    delete s_userFeeShares[from][id][i];
+
+                    break;
+                }
+            }
+        }
+    }
+
+    function updateUserShare(
+        uint256 validatorId,
+        address from,
+        address to,
+        uint256 id
+    ) private {
+        // ? Get the last splitter address of from
+        address validatorSplitAddr = s_feeSplitter[validatorId];
+
+        address[] storage feeAddresses = s_validatorSplitFeeAddresses[
+            validatorId
+        ];
+        address[] memory feePercentages = s_validatorSplitFeePercentages[
+            validatorId
+        ];
+
+        for (uint256 i = 0; i < feeAddresses.length; i++) {
+            if (feeAddresses[i] == from) {
+                require(
+                    feePercentages == id * spliterScaleFactor,
+                    "invalid id"
+                );
+                feeAddresses[i] = to;
+            }
+        }
+
+        // ? Remove the validatorId from the userFeeShares of from and add it to the userFeeShares of to
+        removeToStorageArray(s_userFeeShares[from][id], validatorId);
+        addToStorageArray(s_userFeeShares[to][id], validatorId);
+
+        ISplitMain(spliterAddress).updateSplits(
+            validatorSplitAddr,
+            feeAddresses,
+            feePercentages,
+            0
+        );
+    }
+
+    function splitFeeDenominations(
+        uint256 amount
+    ) external pure returns (uint256[4] memory) {
+        require(amount > 0, "Amount must be greater than 0");
+
+        uint256[] memory denominations = new uint256[](4);
+
+        // Calculate the number of 10s
+        denominations[0] = uint256(amount / (10 * spliterScaleFactor));
+        amount = amount % (10 * spliterScaleFactor);
+
+        // Calculate the number of 5s
+        denominations[1] = uint256(amount / (5 * spliterScaleFactor));
+        amount = amount % (5 * spliterScaleFactor);
+
+        // Calculate the number of 2s
+        denominations[2] = uint256(amount / (2 * spliterScaleFactor));
+        amount = amount % (2 * spliterScaleFactor);
+
+        // The remaining amount is the number of 1s
+        denominations[3] = uint256(amount / (1 * spliterScaleFactor));
+
+        return denominations;
+    }
+
+    function addToStorageArray(
+        uint256[] storage storage_array,
+        uint256 element
+    ) {
+        // ? Replace one of the zero values in the array or add a new element
+        bool added = false;
+        for (uint i = 0; i < storage_array.length; i++) {
+            if (storage_array[i] == 0) {
+                storage_array[i] = element;
+                added = true;
+                break;
+            }
+        }
+        if (!added) {
+            storage_array.push(element);
+        }
+    }
+
+    function removeToStorageArray(
+        uint256[] storage storage_array,
+        uint256 element
+    ) {
+        if (storage_array[storage_array.length - 1] = element) {
+            storage_array.pop();
+            return;
+        }
+
+        for (uint i = 0; i < storage_array.length; i++) {
+            if (storage_array[i] == element) {
+                delete storage_array[i];
+                return;
+            }
+        }
+    }
 }
-
-// balanceOf(account, id)
-
-// balanceOfBatch(accounts, ids)
-
-// setApprovalForAll(operator, approved)
-
-// isApprovedForAll(account, operator)
-
-// safeTransferFrom(from, to, id, value, data)
-
-// safeBatchTransferFrom(from, to, ids, values, data)
