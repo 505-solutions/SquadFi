@@ -1,5 +1,5 @@
 import React, {useEffect, useCallback} from 'react';
-import { Button, Group, Tooltip } from '@mantine/core';
+import { Button, Group, Tooltip, Card, Text, Avatar, Stack, Space } from '@mantine/core';
 import {
     useManageSubscription,
     useSubscription,
@@ -35,6 +35,8 @@ export default function MessagingDrawer() {
     const { address, chainId, isConnected } = useWeb3ModalAccount()
     const { signer } = useWeb3ModalSigner()
     const { handleSendNotification, isSending } = useSendNotification();
+    const { messages, deleteMessage } = useMessages('squad-fi.vercel.app')
+
 
     const signMessage = useCallback(
         async (message: string) => {
@@ -85,9 +87,13 @@ export default function MessagingDrawer() {
           });
         }
       }
-    
-        
-
+      const notification_types = {
+            '589a82cc-e31c-4923-9711-b87a6426b11e': 'Alert', // alert
+            '82a411fe-a8ec-4a86-bb0f-693e86cfa105': 'Onboarding', // onboarding
+            'd035a6b9-e291-41d7-adf0-de94bc3fb7a6': 'Broadcast', // broadcast
+            'default': 'Unknown'
+      }
+      
 
     return (<>
     <Group >
@@ -133,8 +139,26 @@ export default function MessagingDrawer() {
         <li>{isRegistering? 'is registering': 'not'}</li>
         <li>{isSubscribing? 'is subscribing': 'not'}</li>
         <li>{isUnsubscribing? 'is un-subscribing': 'not'}</li>
-
     </ol>
+    <Space></Space>
+    <Stack mt='md' >
+    {messages.slice(0).reverse().map((m, index) => {
+            return (<Card shadow="sm" padding="xs" radius="sm">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <Avatar src={m.message.icon} radius="sm" size="sm" alt="Icon" />
+              <div>
+                <Text fw={500}>{m.message.title}</Text>
+                <Text size="sm">{m.message.body}</Text>
+                <Text size="sm" fs='italic' c='dimmed' >{new Date(m.publishedAt).toUTCString()}</Text>
+
+              </div>
+            </div>
+          </Card>
+      )
+    })}
+    </Stack>
+
+
 
     </>)
 }
