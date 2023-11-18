@@ -2,14 +2,14 @@
 
 import { FooterCentered } from '@/components/Footer/FooterCentered';
 import { HeaderMegaMenu } from '@/components/Header/HeaderMegaMenu';
-import { Group, TextInput, Button, Modal, Code } from '@mantine/core';
+import { Group, TextInput, Button, Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconCheck, IconChecks, IconCircleCheck, IconTicket } from '@tabler/icons-react';
-import { Icon2fa, IconAddressBook, IconAt, IconBlockquote, IconPlus, IconSquareCheckFilled, IconUser, IconUserBolt, IconUserSquare, IconUsersGroup } from '@tabler/icons-react';
+import { IconCheck, IconCircleCheck } from '@tabler/icons-react';
+import { IconBlockquote, IconPlus, IconUserBolt, IconUserSquare, IconUsersGroup } from '@tabler/icons-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
-interface Validator {
+export interface Validator {
   id: number;
   name: string;
   addr: string;
@@ -97,12 +97,7 @@ export default function CreateCluster() {
       <Modal opened={opened} onClose={close} title="Success" centered size="lg">
         <IconCircleCheck size={64} color="green" style={{display: "block", margin: "auto"}}/>
         <h2 style={{textAlign: 'center'}}>You have successfully created a cluster</h2>
-        <p>Copy and paste the following command in your node:</p>
-        <Code block>
-          curl -o https://raw.githubusercontent.com/squadfi/create/main/create.sh <br />
-          bash create.sh
-        </Code>
-        <p>Afterwards invite validators to join your cluster</p>
+        <p style={{textAlign: 'center'}}>Find your cluster and invite other validators to join</p>
         <Link href="exploreClusters" style={{textDecoration: 'none', color: 'white'}}>
           <Button style={{display: 'block', margin: 'auto'}}>Explore clusters</Button>
         </Link>
