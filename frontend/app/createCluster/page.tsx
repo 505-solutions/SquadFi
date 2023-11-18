@@ -4,29 +4,13 @@ import { FooterCentered } from '@/components/Footer/FooterCentered';
 import { HeaderMegaMenu } from '@/components/Header/HeaderMegaMenu';
 import { Group, TextInput, Button, Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconAddressBook, IconCheck, IconCircleCheck } from '@tabler/icons-react';
+import { IconAddressBook, IconCheck, IconCircleCheck, IconUser } from '@tabler/icons-react';
 import { IconBlockquote, IconPlus, IconUserBolt, IconUserSquare, IconUsersGroup } from '@tabler/icons-react';
 import Link from 'next/link';
-import { useState } from 'react';
 
-export interface Validator {
-  id: number;
-  name: string;
-  addr: string;
-}
 
 export default function CreateCluster() {
-  const [name, setName] = useState<string>('');
-  const [vName, setVName] = useState<string>('');
-  const [vAddr, setVAddr] = useState<string>('');
-  const [validators, setValidators] = useState<Validator[]>([]);
   const [opened, { open, close }] = useDisclosure(false);
-
-  function addValidator() {
-    setValidators([...validators, {id: validators.length, name: vName!, addr: vAddr!}]);
-    setVName('');
-    setVAddr(''); 
-  }
 
   return (
     <>
@@ -44,62 +28,57 @@ export default function CreateCluster() {
       >
       <HeaderMegaMenu />
 
-      <Group style={{flexDirection: 'column'}}>
+      <Group style={{flexDirection: 'column', width: '500px', margin: 'auto'}}>
         <h1 style={{display: 'block', margin: 'auto'}}>Create a cluster</h1>
 
+        <p style={{color: '#E2D04B', fontWeight: 700, alignSelf: "baseline", margin: 0}}>SQUAD NAME</p>
         <TextInput
           placeholder="Cluster name"
           inputWrapperOrder={['label', 'error', 'input', 'description']}
           leftSection={<IconUsersGroup size={16} />}
-          onChange={(event) => setName(event.currentTarget.value)}
           size='xl'
+          variant='unstyled'
+          style={{
+            border: '1px solid #E2D04B',
+            width: '100%'
+          }}
         />
 
         <h2>Validators:</h2>
         
-        <Group style={{flexDirection: 'column'}}>
-          {validators.map((validator) => (
-            <Group key={validator.id}>
-              <IconUserBolt />
-              <p>
-                Validator{validator.id}
-              </p>
-              <p>
-                <strong>{validator.name}</strong>
-              </p>
-              <p>
-                <i>{validator.addr}</i>
-              </p>
+        <Group style={{flexDirection: 'column', width: '100%'}}>
+          {[1, 2, 3, 4].map((i) => (
+            <Group style={{width: '100%', margin: 0, padding: 0}}>
+              <p style={{color: '#E2D04B', fontWeight: 700, alignSelf: "baseline", margin: 0}}>{`Validator ${i}/4`}</p>
+              <TextInput
+                placeholder="ETH address or ENS name"
+                inputWrapperOrder={['label', 'error', 'input', 'description']}
+                leftSection={<IconUser size={16} />}
+                size='xl'
+                variant='unstyled'
+                style={{
+                  border: '1px solid #E2D04B',
+                  width: '100%',
+                  height: '60px'
+                }}
+              />
             </Group>
           ))}
         </Group>
-        
-        <Group>
-          <TextInput
-            placeholder="Validator name"
-            inputWrapperOrder={['label', 'error', 'input', 'description']}
-            leftSection={<IconUserSquare size={16} />}
-            value={vName}
-            onChange={(event) => setVName(event.currentTarget.value)}
-          />
 
-          <TextInput
-            placeholder="Validator addr"
-            inputWrapperOrder={['label', 'error', 'input', 'description']}
-            leftSection={<IconBlockquote size={16} />} 
-            value={vAddr}
-            onChange={(event) => setVAddr(event.currentTarget.value)}
-          />
-          <Button color='#E97333' onClick={addValidator} leftSection={<IconPlus />}>Add validator</Button>
-        </Group>
-        <p>Treshold: {Math.ceil(validators.length * 2 / 3)}/{validators.length}</p>
+        <p>Treshold: 3/4</p>
         
+        <p style={{color: '#E2D04B', fontWeight: 700, alignSelf: "baseline", margin: 0}}>SAFE ADDRESS</p>
         <TextInput
           placeholder="SAFE address"
           inputWrapperOrder={['label', 'error', 'input', 'description']}
           leftSection={<IconAddressBook size={16} />}
-          onChange={(event) => setName(event.currentTarget.value)}
           size='xl'
+          variant='unstyled'
+          style={{
+            border: '1px solid #E2D04B',
+            width: '100%'
+          }}
         />
 
         <Button
