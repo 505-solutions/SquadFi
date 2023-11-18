@@ -27,14 +27,17 @@ export function FooterCentered() {
 
   return (
     <div className={classes.footer}>
-      <div className={classes.inner} style={{alignItems: 'baseline'}}>
-        <Image
-          radius="md"
-          component={NextImage}
-          alt='Cats'
-          src={obolLogo}
-          style={{width: '200px', borderRadius: '50px', height: 'auto', marginTop: '25px', marginLeft: '10px'}}
-        />
+      <div className={classes.inner}>
+        <Group style={{flexDirection: 'column'}}>
+          <p style={{margin: 0}}>Powered by:</p>
+          <Image
+            radius="md"
+            component={NextImage}
+            alt='Cats'
+            src={obolLogo}
+            style={{width: '200px', borderRadius: '50px', height: 'auto'}}
+          />
+        </Group>
 
         <Group className={classes.links}>{items}</Group>
 
