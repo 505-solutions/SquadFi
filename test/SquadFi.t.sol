@@ -119,4 +119,25 @@ contract CounterTest is Test {
             bytes32(0)
         );
     }
+
+    function test_transferingNfts() public {
+        test_activateValidator();
+
+        // uint256 bal = balanceOf(feeRecipients[0], 25);
+
+        uint256 bal1 = nftManagerContract.balanceOf(address(user1), 25);
+        uint256 bal2 = nftManagerContract.balanceOf(address(user2), 25);
+        uint256 bal3 = nftManagerContract.balanceOf(address(user3), 25);
+        uint256 bal4 = nftManagerContract.balanceOf(address(user4), 25);
+
+        console.log(bal1, bal2, bal3, bal4);
+
+        vm.startPrank(user1);
+        nftManagerContract.safeTransferFrom(user1, user2, 25, 1, bytes(""));
+
+        uint256 bal1_2 = nftManagerContract.balanceOf(address(user1), 25);
+        uint256 bal2_2 = nftManagerContract.balanceOf(address(user2), 25);
+
+        console.log(bal1_2, bal2_2);
+    }
 }
