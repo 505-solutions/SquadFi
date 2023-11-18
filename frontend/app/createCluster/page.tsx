@@ -2,9 +2,11 @@
 
 import { FooterCentered } from '@/components/Footer/FooterCentered';
 import { HeaderMegaMenu } from '@/components/Header/HeaderMegaMenu';
-import { Group, TextInput, Button } from '@mantine/core';
-import { IconCheck } from '@tabler/icons-react';
+import { Group, TextInput, Button, Modal, Code } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { IconCheck, IconChecks, IconCircleCheck, IconTicket } from '@tabler/icons-react';
 import { Icon2fa, IconAddressBook, IconAt, IconBlockquote, IconPlus, IconSquareCheckFilled, IconUser, IconUserBolt, IconUserSquare, IconUsersGroup } from '@tabler/icons-react';
+import Link from 'next/link';
 import { useState } from 'react';
 
 interface Validator {
@@ -18,6 +20,7 @@ export default function CreateCluster() {
   const [vName, setVName] = useState<string>('');
   const [vAddr, setVAddr] = useState<string>('');
   const [validators, setValidators] = useState<Validator[]>([]);
+  const [opened, { open, close }] = useDisclosure(false);
 
   function addValidator() {
     setValidators([...validators, {id: validators.length, name: vName!, addr: vAddr!}]);
@@ -75,9 +78,9 @@ export default function CreateCluster() {
             value={vAddr}
             onChange={(event) => setVAddr(event.currentTarget.value)}
           />
-
           <Button onClick={addValidator} leftSection={<IconPlus />}>Add validator</Button>
         </Group>
+        <p>Treshold: {Math.ceil(validators.length * 2 / 3)}/{validators.length}</p>
       
         <Button
           style={{marginTop: '20px'}}
@@ -85,10 +88,25 @@ export default function CreateCluster() {
           gradient={{ from: 'blue', to: 'violet', deg: 90 }}
           size="xl"
           leftSection={<IconCheck />}
+          onClick={open}
         >
           Create cluster
         </Button>
       </Group>
+      
+      <Modal opened={opened} onClose={close} title="Success" centered size="lg">
+        <IconCircleCheck size={64} color="green" style={{display: "block", margin: "auto"}}/>
+        <h2 style={{textAlign: 'center'}}>You have successfully created a cluster</h2>
+        <p>Copy and paste the following command in your node:</p>
+        <Code block>
+          curl -o https://raw.githubusercontent.com/squadfi/create/main/create.sh <br />
+          bash create.sh
+        </Code>
+        <p>Afterwards invite validators to join your cluster</p>
+        <Link href="exploreClusters" style={{textDecoration: 'none', color: 'white'}}>
+          <Button style={{display: 'block', margin: 'auto'}}>Explore clusters</Button>
+        </Link>
+      </Modal>
 
       <FooterCentered />
     </>

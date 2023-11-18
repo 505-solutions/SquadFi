@@ -22,14 +22,14 @@ export function InitialButtons() {
 
             <Link
               style={{ textDecoration: 'none', color: 'white' }}
-              href="/joinCluster"
+              href="/exploreClusters"
             >
                 <Button
                   variant="gradient"
                   gradient={{ from: 'blue', to: 'violet', deg: 90 }}
                   size="xl"
                 >
-                  Join cluster
+                  Explore clusters
                 </Button>
             </Link>
         </Group>
