@@ -169,9 +169,6 @@ contract SquadFiDeposits is Ownable {
             uint32[] memory feePercentages
         ) = splitValidatorFees(validatorId, validatorInfo);
 
-        console.log("feeRecipients: %s", feeRecipients[0], feeRecipients[3]);
-        console.log("feePercentages: %s", feePercentages[0], feePercentages[3]);
-
         address newSpliterAddress = RewardShareNFT(nftManager).mintBatch(
             validatorId,
             feeRecipients,
@@ -179,15 +176,11 @@ contract SquadFiDeposits is Ownable {
         );
         s_validatorFeeSplitter[validatorId] = newSpliterAddress;
 
-        // console.log("newSpliterAddress: %s", newSpliterAddress);
-
-        // address owrAddress = s_validatorOwr[validatorId];
-        // OptimisticWithdrawalRecipientFactory(owrFactory).setRewardRecipient(
-        //     owrAddress,
-        //     newSpliterAddress
-        // );
-
-        // console.log("owrAddress: %s", owrAddress);
+        address owrAddress = s_validatorOwr[validatorId];
+        OptimisticWithdrawalRecipientFactory(owrFactory).setRewardRecipient(
+            owrAddress,
+            newSpliterAddress
+        );
 
         // TODO: require withdrawal_credentials last 32 bytes ==  owrAddress
 
