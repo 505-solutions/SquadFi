@@ -35,7 +35,7 @@ export default function MessagingDrawer() {
     const { address, chainId, isConnected } = useWeb3ModalAccount()
     const { signer } = useWeb3ModalSigner()
     const { handleSendNotification, isSending } = useSendNotification();
-    const { messages, deleteMessage } = useMessages('squad-fi.vercel.app')
+    const { messages, deleteMessage } = useMessages(`eip155:${chainId}:${address}`, 'squad-fi.vercel.app')
 
 
     const signMessage = useCallback(
