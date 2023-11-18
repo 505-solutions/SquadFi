@@ -25,7 +25,7 @@ function useSendNotification() {
         notifications.show({
           title: success ? "Message sent." : "Message failed.",
           message: success ? message : "Please try again.",
-          color: success ? "orange" : "red",
+          color: success ? "yellow" : "red",
         });
       } catch (error: any) {
         setIsSending(false);

@@ -74,16 +74,7 @@ export default function MessagingDrawer() {
       }    
     
       const handleTestNotification = async () => {
-        if (isSubscribed) {
-            const success = true;
-            const message = "Message sent.";
-            notifications.show({
-                title: success ? "Message sent." : "Message failed.",
-                message: success ? message : "Please try again.",
-                color: success ? "orange" : "red",
-                variant: 'top-left',
-              });
-      
+        if (isSubscribed) {      
           handleSendNotification({
             title: "GM Hacker",
             body: "Hack it until you make it!",

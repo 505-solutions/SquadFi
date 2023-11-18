@@ -16,7 +16,7 @@ export const metadata = {
 export function Providers({ children }:{ children: ReactNode }) {
   return (
     <MantineProvider defaultColorScheme="dark">
-      <Notifications/>
+      <Notifications position="bottom-left" zIndex={10100000001}/>
       <Web3ModalProvider>
         <GlobalPropsProvider>
           {children}

@@ -1,6 +1,7 @@
 import '@mantine/core/styles.css';
 import React from 'react';
 import { Providers } from './Providers';
+import '@mantine/notifications/styles.css';
 
 export const metadata = {
   title: 'SquadFi',
