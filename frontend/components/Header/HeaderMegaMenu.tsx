@@ -123,8 +123,7 @@ export function HeaderMegaMenu() {
           <Group visibleFrom="sm">
             { address ?
               <>
-              <Button variant='light' onClick={() => setMessagesOpened(true)} rightSection={<IconMessageShare size={14} />}>Open web3inbox</Button>
-              <Button color="green" onClick={() => open()}/>
+              <Button variant='light' color='#EEAD36' onClick={() => setMessagesOpened(true)} rightSection={<IconMessageShare size={14} />}>Open web3inbox</Button>
               <Button variant="gradient" gradient={{ from: '#EEAD36', to: '#E97333', deg: 90 }} onClick={() => open()}>
                 {`${address.substring(0, 7)}...${address.substring(address.length - 5, address.length)}`}
               </Button>
