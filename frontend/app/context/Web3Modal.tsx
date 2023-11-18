@@ -7,11 +7,11 @@ const projectId = '00bc088c4562cbad8696764bfe08cd24'
 
 // 2. Set chains
 const sepolia = {
-  chainId: 11155111,
-  name: 'Sepolia',
+  chainId: 17000,
+  name: 'Holesky',
   currency: 'ETH',
-  explorerUrl: 'https://sepolia.etherscan.io',
-  rpcUrl: 'https://1rpc.io/sepolia'
+  explorerUrl: 'https://holesky.etherscan.io',
+  rpcUrl: 'https://ethereum-holesky.publicnode.com'
 }
 
 // 3. Create modal

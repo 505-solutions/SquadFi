@@ -37,7 +37,6 @@ export default function MessagingDrawer() {
     const { handleSendNotification, isSending } = useSendNotification();
     const { messages, deleteMessage } = useMessages(`eip155:${chainId}:${address}`, 'squad-fi.vercel.app')
 
-
     const signMessage = useCallback(
         async (message: string) => {
           const res = await signer?.signMessage(message);
