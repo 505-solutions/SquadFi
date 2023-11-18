@@ -1,11 +1,14 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
+import "@openzeppelin/contracts/access/Ownable.sol";
+
 import "./interfaces/ISplitMain.sol";
+import "./interfaces/IRocketPool.sol";
+import "./interfaces/IDepositContract.sol";
+
 import "./obolOwr/OwrFactory.sol";
 import "./RewardShareNFT.sol";
-
-import "@openzeppelin/contracts/access/Ownable.sol";
 
 import "forge-std/console.sol";
 
@@ -32,6 +35,14 @@ contract SquadFiDeposits is Ownable {
     address owrFactory;
     address nftManager;
 
+    uint256 internal constant ETH_DEPOSIT = 0;
+    uint256 internal constant ROCKETPOOL = 1;
+    uint256 internal constant STAKEWISE = 2;
+
+    address ethDepositContract;
+    address rocketNodeManager;
+    address rocketNodeDeposit;
+
     uint256 constant spliterScaleFactor = 1000000;
 
     constructor(address initialOwner) Ownable(initialOwner) {}
@@ -42,6 +53,24 @@ contract SquadFiDeposits is Ownable {
 
     function setNftManager(address _nftManager) external onlyOwner {
         nftManager = _nftManager;
+    }
+
+    function setRocketNodeManager(
+        address _rocketNodeManager
+    ) external onlyOwner {
+        rocketNodeManager = _rocketNodeManager;
+    }
+
+    function setRocketNodeDeposit(
+        address _rocketNodeDeposit
+    ) external onlyOwner {
+        rocketNodeDeposit = _rocketNodeDeposit;
+    }
+
+    function setEthDepositContract(
+        address _ethDepositContract
+    ) external onlyOwner {
+        ethDepositContract = _ethDepositContract;
     }
 
     // ! Make a contribution to a validator
@@ -119,7 +148,8 @@ contract SquadFiDeposits is Ownable {
         address[] calldata feeAddresses,
         uint32[] calldata percentAllocations,
         address signer // ideally a gnosis safe multisig
-    ) external {
+    ) external // uint256 depositType
+    {
         // TODO: Get all the signers from the gnosis multisig
 
         require(feeAddresses.length >= 1, "must have at least one fee address");
@@ -138,6 +168,12 @@ contract SquadFiDeposits is Ownable {
             percentAllocations: percentAllocations,
             signer: signer
         });
+
+        // if (depositType == ROCKETPOOL) {
+        //     IRocketNodeManager(rocketNodeManager).registerNode(("us-east-1"));
+        // } else if (depositType == STAKEWISE) {
+        //     // TODO
+        // }
     }
 
     // ! Activate validator
@@ -146,8 +182,8 @@ contract SquadFiDeposits is Ownable {
         bytes calldata pubkey,
         bytes calldata withdrawal_credentials,
         bytes calldata signature,
-        bytes32 deposit_data_root
-    ) public {
+        bytes32 deposit_data_root // uint256 depositType
+    ) external {
         require(
             s_isValidatorActive[validatorId] == false,
             "validator already active"
@@ -185,6 +221,25 @@ contract SquadFiDeposits is Ownable {
         // TODO: require withdrawal_credentials last 32 bytes ==  owrAddress
 
         // TODO: ACTIVATE THE VALIDATOR  BY SENDING IT TO ROCKETPOOL
+
+        // if (depositType == ROCKETPOOL) {
+        //     IRocketNodeDeposit(rocketNodeManager).deposit(
+        //         _bondAmount,
+        //         _minimumNodeFee,
+        //         _validatorPubkey,
+        //         _validatorSignature,
+        //         _depositDataRoot,
+        //         _salt,
+        //         _expectedMinipoolAddress
+        //     );
+        // } else if (depositType == STAKEWISE) {} else {
+        //     IDepositContract(ethDepositContract).deposit(
+        //         pubkey,
+        //         withdrawal_credentials,
+        //         signature,
+        //         deposit_data_root
+        //     );
+        // }
     }
 
     // * HELPERS =================================================
