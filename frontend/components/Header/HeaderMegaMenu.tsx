@@ -18,6 +18,7 @@ import {
   ScrollArea,
   rem,
   useMantineTheme,
+  Image
 } from '@mantine/core';
 import { MantineLogo } from '@mantine/ds';
 import {
@@ -33,7 +34,10 @@ import { useContext, useState } from 'react';
 import { useWeb3Modal } from '@web3modal/ethers5/react'
 import classes from './HeaderMegaMenu.module.css';
 import { globalPropsContext } from '@/contexts/globalContext';
-import { useWeb3ModalAccount } from '@web3modal/ethers5/react'
+import { useWeb3ModalAccount } from '@web3modal/ethers5/react';
+import NextImage from 'next/image';
+import logo from "../../public/logo.png";
+import Link from 'next/link';
 
 const mockdata = [
   {
@@ -94,12 +98,22 @@ export function HeaderMegaMenu() {
   ));
 
   return (
-    <Box pb={120}>
+    <Box>
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
-          <MantineLogo size={30} />
+        <Link
+          href='/'
+        >
+          <Image
+            radius="md"
+            component={NextImage}
+            alt='Cats'
+            src={logo}
+            style={{width: '70px', height: 'auto', marginTop: '25px', marginLeft: '10px'}}
+          />
+        </Link>
 
-          <Group h="100%" gap={0} visibleFrom="sm">
+          {/* <Group h="100%" gap={0} visibleFrom="sm">
             <a href="#" className={classes.link}>
               Home
             </a>
@@ -153,7 +167,7 @@ export function HeaderMegaMenu() {
             <a href="#" className={classes.link}>
               Academy
             </a>
-          </Group>
+          </Group> */}
 
           <Group visibleFrom="sm">
             { address ?
@@ -178,7 +192,7 @@ export function HeaderMegaMenu() {
         hiddenFrom="sm"
         zIndex={1000000}
       >
-        <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
+        <ScrollArea h={'auto'} mx="-md">
           <Divider my="sm" />
 
           <a href="#" className={classes.link}>
