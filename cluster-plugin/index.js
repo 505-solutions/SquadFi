@@ -39,6 +39,15 @@ async function sendNotification(notificationType, title, body, icon, url, accoun
     
     // Handle response if needed
     console.log('Notification sent:', response.data);
+    console.log(      {
+      notification: {
+        type: notificationType,
+        title: title,
+        body: body,
+        icon: 'https://imagedelivery.net/_aTEfDRm7z3tKgu9JhfeKA/d1ec9032-54e5-4f1c-f67a-51654f6f7900/md'
+      },
+      accounts: accounts
+    })
     return response.data;
   } catch (error) {
     // Handle error
@@ -68,7 +77,7 @@ const fetchTargets = () => {
 
       // Send notification
       const formattedUTCDate = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
-      sendNotification(notification_types[0], `SquadFi Cluster | ${formattedUTCDate} | ${OK == targets.length ? 'ALL OK ✅': 'FAIL ❌'}`, msg, [""], [""], cluster_owner);
+      sendNotification(notification_types[0], `Your node status | ${OK == targets.length ? 'ALL OK ✅': 'FAIL ❌'} | ${formattedUTCDate}`, msg, [""], [""], cluster_owner);
 
     })
     .catch(error => {
@@ -85,4 +94,5 @@ cron.schedule('*/30 * * * * *', () => {
 const port = 3012;
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
+  sendNotification(notification_types[1], 'SquadFi Cluster | Onboarding | New operator', `Operator ${cluster_owner[0].substring(0, 32)}... is now online.`, [""], [""], cluster_owner);
 });

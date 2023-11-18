@@ -20,6 +20,8 @@ import {
   useMantineTheme,
   Image
 } from '@mantine/core';
+import { IconPhoto, IconDownload, IconMessageShare } from '@tabler/icons-react';
+import { MantineLogo } from '@mantine/ds';
 import {
   IconNotification,
   IconCode,
@@ -33,43 +35,13 @@ import { useContext, useState } from 'react';
 import { useWeb3Modal } from '@web3modal/ethers5/react'
 import classes from './HeaderMegaMenu.module.css';
 import { globalPropsContext } from '@/contexts/globalContext';
-import { useWeb3ModalAccount } from '@web3modal/ethers5/react';
+import { useWeb3ModalAccount } from '@web3modal/ethers5/react'
+import { useDisclosure } from '@mantine/hooks';
+import MessagingDrawer from '../MessagingDrawer';
 import NextImage from 'next/image';
 import logo from "../../public/logo.png";
 import Link from 'next/link';
 
-const mockdata = [
-  {
-    icon: IconCode,
-    title: 'Open source',
-    description: 'This Pokémon’s cry is very loud and distracting',
-  },
-  {
-    icon: IconCoin,
-    title: 'Free for everyone',
-    description: 'The fluid of Smeargle’s tail secretions changes',
-  },
-  {
-    icon: IconBook,
-    title: 'Documentation',
-    description: 'Yanma is capable of seeing 360 degrees without',
-  },
-  {
-    icon: IconFingerprint,
-    title: 'Security',
-    description: 'The shell’s rounded shape and the grooves on its.',
-  },
-  {
-    icon: IconChartPie3,
-    title: 'Analytics',
-    description: 'This Pokémon uses its flying ability to quickly chase',
-  },
-  {
-    icon: IconNotification,
-    title: 'Notifications',
-    description: 'Combusken battles with the intensely hot flames it spews',
-  },
-];
 
 export function HeaderMegaMenu() {
     const [drawerOpened, setDrawerOpened] = useState(false);
@@ -77,24 +49,7 @@ export function HeaderMegaMenu() {
     const theme = useMantineTheme();
     const { open, close } = useWeb3Modal()
     const { address, chainId, isConnected } = useWeb3ModalAccount()
-
-    const links = mockdata.map((item) => (
-    <UnstyledButton className={classes.subLink} key={item.title}>
-      <Group wrap="nowrap" align="flex-start">
-        <ThemeIcon size={34} variant="default" radius="md">
-          <item.icon style={{ width: rem(22), height: rem(22) }} color={theme.colors.blue[6]} />
-        </ThemeIcon>
-        <div>
-          <Text size="sm" fw={500}>
-            {item.title}
-          </Text>
-          <Text size="xs" c="dimmed">
-            {item.description}
-          </Text>
-        </div>
-      </Group>
-    </UnstyledButton>
-  ));
+    const [messagesOpened, setMessagesOpened] = useState(false);
 
   return (
     <Box>
@@ -141,9 +96,6 @@ export function HeaderMegaMenu() {
 
                 <Divider my="sm" />
 
-                <SimpleGrid cols={2} spacing={0}>
-                  {links}
-                </SimpleGrid>
 
                 <div className={classes.dropdownFooter}>
                   <Group justify="space-between">
@@ -170,14 +122,18 @@ export function HeaderMegaMenu() {
 
           <Group visibleFrom="sm">
             { address ?
+              <>
+              <Button variant='light' color='#EEAD36' onClick={() => setMessagesOpened(true)} rightSection={<IconMessageShare size={14} />}>Open web3inbox</Button>
               <Button variant="gradient" gradient={{ from: '#EEAD36', to: '#E97333', deg: 90 }} onClick={() => open()}>
                 {`${address.substring(0, 7)}...${address.substring(address.length - 5, address.length)}`}
               </Button>
+              </>
               :
               <Button variant="gradient" gradient={{ from: '#EEAD36', to: '#E97333', deg: 90 }} onClick={() => open()}>
                 Connect wallet
               </Button>
             }
+
           </Group>
 
           <Burger opened={drawerOpened} onClick={() => setDrawerOpened(true)} hiddenFrom="sm" />
@@ -210,7 +166,6 @@ export function HeaderMegaMenu() {
               />
             </Center>
           </UnstyledButton>
-          <Collapse in={linksOpened}>{links}</Collapse>
           <a href="#" className={classes.link}>
             Learn
           </a>
@@ -221,6 +176,18 @@ export function HeaderMegaMenu() {
           <Divider my="sm" />
         </ScrollArea>
       </Drawer>
+
+    <Drawer
+        opened={messagesOpened}
+        onClose={() => setMessagesOpened(false)}
+        padding="md"
+        position='right'
+        title={<><Text fw={900} size='xl'>Your Squad's messages</Text><small style={{color: '#999'}}>powered by web3inbox</small></>}
+        zIndex={1000000}
+      >
+        <MessagingDrawer/>
+    </Drawer>
+
     </Box>
   );
 }
