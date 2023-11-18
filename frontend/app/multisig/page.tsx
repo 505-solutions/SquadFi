@@ -10,7 +10,8 @@ import { FooterCentered } from '@/components/Footer/FooterCentered';
 import { HeaderMegaMenu } from '@/components/Header/HeaderMegaMenu';
 import { Button } from '@mantine/core';
 import { useSDK } from '@metamask/sdk-react';
-
+import { useWeb3ModalSigner, useWeb3ModalAccount } from '@web3modal/ethers5/react'
+import type { Signer } from 'ethers'
 
 interface EthClient {
   isConnected: boolean;
@@ -19,14 +20,14 @@ interface EthClient {
 
 
 export default function HomePage() {
-  const { sdk, provider } = useSDK();
+  const { signer } = useWeb3ModalSigner()
 
   const proposeToGnosis = async () => {
     console.log('Propose to Gnosis')
-          
-    // Get signer using MetaMask
-    const signer = provider.getSigner();
 
+    if (!(signer)){
+        return false;
+    }
     
     const ethAdapter = new EthersAdapter({
       ethers,

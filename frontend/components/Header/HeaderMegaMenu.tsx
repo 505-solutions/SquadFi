@@ -75,20 +75,6 @@ export function HeaderMegaMenu() {
     const { open, close } = useWeb3Modal()
     const { address, chainId, isConnected } = useWeb3ModalAccount()
 
-
-
-    async function connect() {
-        try {
-          console.log('connecting', address);
-          const accounts:any = await sdk?.connect();
-          if (accounts) {
-            setAddress(accounts?.[0]);
-          }
-        } catch (err) {
-          console.warn('failed to connect..', err);
-        }
-    }
-
     const links = mockdata.map((item) => (
     <UnstyledButton className={classes.subLink} key={item.title}>
       <Group wrap="nowrap" align="flex-start">
