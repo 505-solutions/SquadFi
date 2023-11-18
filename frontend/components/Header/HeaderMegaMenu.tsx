@@ -20,7 +20,6 @@ import {
   useMantineTheme,
   Image
 } from '@mantine/core';
-import { MantineLogo } from '@mantine/ds';
 import {
   IconNotification,
   IconCode,
@@ -171,11 +170,13 @@ export function HeaderMegaMenu() {
 
           <Group visibleFrom="sm">
             { address ?
-              <Button color="green" onClick={() => open()}>
+              <Button variant="gradient" gradient={{ from: '#EEAD36', to: '#E97333', deg: 90 }} onClick={() => open()}>
                 {`${address.substring(0, 7)}...${address.substring(address.length - 5, address.length)}`}
               </Button>
               :
-              <Button onClick={() => open()}>Connect wallet</Button>
+              <Button variant="gradient" gradient={{ from: '#EEAD36', to: '#E97333', deg: 90 }} onClick={() => open()}>
+                Connect wallet
+              </Button>
             }
           </Group>
 

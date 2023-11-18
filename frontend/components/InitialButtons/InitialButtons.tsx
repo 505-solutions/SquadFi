@@ -13,7 +13,7 @@ export function InitialButtons() {
             >
                 <Button
                   variant="gradient"
-                  gradient={{ from: 'blue', to: 'violet', deg: 90 }}
+                  gradient={{ from: '#EEAD36', to: '#E97333', deg: 90 }}
                   size="xl"
                 >
                   Create cluster
@@ -26,7 +26,7 @@ export function InitialButtons() {
             >
                 <Button
                   variant="gradient"
-                  gradient={{ from: 'blue', to: 'violet', deg: 90 }}
+                  gradient={{ from: '#EEAD36', to: '#E97333', deg: 90 }}
                   size="xl"
                 >
                   Explore clusters
