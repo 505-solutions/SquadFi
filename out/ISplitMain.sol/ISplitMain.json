@@ -1,0 +1,3729 @@
+{
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "split",
+          "type": "address"
+        }
+      ],
+      "name": "CancelControlTransfer",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "split",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousController",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newController",
+          "type": "address"
+        }
+      ],
+      "name": "ControlTransfer",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "split",
+          "type": "address"
+        }
+      ],
+      "name": "CreateSplit",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "split",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "contract ERC20",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "distributorAddress",
+          "type": "address"
+        }
+      ],
+      "name": "DistributeERC20",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "split",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "distributorAddress",
+          "type": "address"
+        }
+      ],
+      "name": "DistributeETH",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "split",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newPotentialController",
+          "type": "address"
+        }
+      ],
+      "name": "InitiateControlTransfer",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "split",
+          "type": "address"
+        }
+      ],
+      "name": "UpdateSplit",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "ethAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "contract ERC20[]",
+          "name": "tokens",
+          "type": "address[]"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256[]",
+          "name": "tokenAmounts",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "Withdrawal",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "split",
+          "type": "address"
+        }
+      ],
+      "name": "acceptControl",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "split",
+          "type": "address"
+        }
+      ],
+      "name": "cancelControlTransfer",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address[]",
+          "name": "accounts",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint32[]",
+          "name": "percentAllocations",
+          "type": "uint32[]"
+        },
+        {
+          "internalType": "uint32",
+          "name": "distributorFee",
+          "type": "uint32"
+        },
+        {
+          "internalType": "address",
+          "name": "controller",
+          "type": "address"
+        }
+      ],
+      "name": "createSplit",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "split",
+          "type": "address"
+        },
+        {
+          "internalType": "contract ERC20",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "address[]",
+          "name": "accounts",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint32[]",
+          "name": "percentAllocations",
+          "type": "uint32[]"
+        },
+        {
+          "internalType": "uint32",
+          "name": "distributorFee",
+          "type": "uint32"
+        },
+        {
+          "internalType": "address",
+          "name": "distributorAddress",
+          "type": "address"
+        }
+      ],
+      "name": "distributeERC20",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "split",
+          "type": "address"
+        },
+        {
+          "internalType": "address[]",
+          "name": "accounts",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint32[]",
+          "name": "percentAllocations",
+          "type": "uint32[]"
+        },
+        {
+          "internalType": "uint32",
+          "name": "distributorFee",
+          "type": "uint32"
+        },
+        {
+          "internalType": "address",
+          "name": "distributorAddress",
+          "type": "address"
+        }
+      ],
+      "name": "distributeETH",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "split",
+          "type": "address"
+        }
+      ],
+      "name": "makeSplitImmutable",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address[]",
+          "name": "accounts",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint32[]",
+          "name": "percentAllocations",
+          "type": "uint32[]"
+        },
+        {
+          "internalType": "uint32",
+          "name": "distributorFee",
+          "type": "uint32"
+        }
+      ],
+      "name": "predictImmutableSplitAddress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "split",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "newController",
+          "type": "address"
+        }
+      ],
+      "name": "transferControl",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "split",
+          "type": "address"
+        },
+        {
+          "internalType": "contract ERC20",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "address[]",
+          "name": "accounts",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint32[]",
+          "name": "percentAllocations",
+          "type": "uint32[]"
+        },
+        {
+          "internalType": "uint32",
+          "name": "distributorFee",
+          "type": "uint32"
+        },
+        {
+          "internalType": "address",
+          "name": "distributorAddress",
+          "type": "address"
+        }
+      ],
+      "name": "updateAndDistributeERC20",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "split",
+          "type": "address"
+        },
+        {
+          "internalType": "address[]",
+          "name": "accounts",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint32[]",
+          "name": "percentAllocations",
+          "type": "uint32[]"
+        },
+        {
+          "internalType": "uint32",
+          "name": "distributorFee",
+          "type": "uint32"
+        },
+        {
+          "internalType": "address",
+          "name": "distributorAddress",
+          "type": "address"
+        }
+      ],
+      "name": "updateAndDistributeETH",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "split",
+          "type": "address"
+        },
+        {
+          "internalType": "address[]",
+          "name": "accounts",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint32[]",
+          "name": "percentAllocations",
+          "type": "uint32[]"
+        },
+        {
+          "internalType": "uint32",
+          "name": "distributorFee",
+          "type": "uint32"
+        }
+      ],
+      "name": "updateSplit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "walletImplementation",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "withdrawETH",
+          "type": "uint256"
+        },
+        {
+          "internalType": "contract ERC20[]",
+          "name": "tokens",
+          "type": "address[]"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "acceptControl(address)": "c7de6440",
+    "cancelControlTransfer(address)": "1267c6da",
+    "createSplit(address[],uint32[],uint32,address)": "7601f782",
+    "distributeERC20(address,address,address[],uint32[],uint32,address)": "15811302",
+    "distributeETH(address,address[],uint32[],uint32,address)": "e61cb05e",
+    "makeSplitImmutable(address)": "189cbaa0",
+    "predictImmutableSplitAddress(address[],uint32[],uint32)": "52844dd3",
+    "transferControl(address,address)": "d0e4b2f4",
+    "updateAndDistributeERC20(address,address,address[],uint32[],uint32,address)": "77b1e4e9",
+    "updateAndDistributeETH(address,address[],uint32[],uint32,address)": "a5e3909e",
+    "updateSplit(address,address[],uint32[],uint32)": "ecef0ace",
+    "walletImplementation()": "8117abc1",
+    "withdraw(address,uint256,address[])": "6e5f6919"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"split\",\"type\":\"address\"}],\"name\":\"CancelControlTransfer\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"split\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousController\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newController\",\"type\":\"address\"}],\"name\":\"ControlTransfer\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"split\",\"type\":\"address\"}],\"name\":\"CreateSplit\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"split\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"contract ERC20\",\"name\":\"token\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"distributorAddress\",\"type\":\"address\"}],\"name\":\"DistributeERC20\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"split\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"distributorAddress\",\"type\":\"address\"}],\"name\":\"DistributeETH\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"split\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newPotentialController\",\"type\":\"address\"}],\"name\":\"InitiateControlTransfer\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"split\",\"type\":\"address\"}],\"name\":\"UpdateSplit\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"ethAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"contract ERC20[]\",\"name\":\"tokens\",\"type\":\"address[]\"},{\"indexed\":false,\"internalType\":\"uint256[]\",\"name\":\"tokenAmounts\",\"type\":\"uint256[]\"}],\"name\":\"Withdrawal\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"split\",\"type\":\"address\"}],\"name\":\"acceptControl\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"split\",\"type\":\"address\"}],\"name\":\"cancelControlTransfer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"accounts\",\"type\":\"address[]\"},{\"internalType\":\"uint32[]\",\"name\":\"percentAllocations\",\"type\":\"uint32[]\"},{\"internalType\":\"uint32\",\"name\":\"distributorFee\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"controller\",\"type\":\"address\"}],\"name\":\"createSplit\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"split\",\"type\":\"address\"},{\"internalType\":\"contract ERC20\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"accounts\",\"type\":\"address[]\"},{\"internalType\":\"uint32[]\",\"name\":\"percentAllocations\",\"type\":\"uint32[]\"},{\"internalType\":\"uint32\",\"name\":\"distributorFee\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"distributorAddress\",\"type\":\"address\"}],\"name\":\"distributeERC20\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"split\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"accounts\",\"type\":\"address[]\"},{\"internalType\":\"uint32[]\",\"name\":\"percentAllocations\",\"type\":\"uint32[]\"},{\"internalType\":\"uint32\",\"name\":\"distributorFee\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"distributorAddress\",\"type\":\"address\"}],\"name\":\"distributeETH\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"split\",\"type\":\"address\"}],\"name\":\"makeSplitImmutable\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"accounts\",\"type\":\"address[]\"},{\"internalType\":\"uint32[]\",\"name\":\"percentAllocations\",\"type\":\"uint32[]\"},{\"internalType\":\"uint32\",\"name\":\"distributorFee\",\"type\":\"uint32\"}],\"name\":\"predictImmutableSplitAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"split\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"newController\",\"type\":\"address\"}],\"name\":\"transferControl\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"split\",\"type\":\"address\"},{\"internalType\":\"contract ERC20\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"accounts\",\"type\":\"address[]\"},{\"internalType\":\"uint32[]\",\"name\":\"percentAllocations\",\"type\":\"uint32[]\"},{\"internalType\":\"uint32\",\"name\":\"distributorFee\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"distributorAddress\",\"type\":\"address\"}],\"name\":\"updateAndDistributeERC20\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"split\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"accounts\",\"type\":\"address[]\"},{\"internalType\":\"uint32[]\",\"name\":\"percentAllocations\",\"type\":\"uint32[]\"},{\"internalType\":\"uint32\",\"name\":\"distributorFee\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"distributorAddress\",\"type\":\"address\"}],\"name\":\"updateAndDistributeETH\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"split\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"accounts\",\"type\":\"address[]\"},{\"internalType\":\"uint32[]\",\"name\":\"percentAllocations\",\"type\":\"uint32[]\"},{\"internalType\":\"uint32\",\"name\":\"distributorFee\",\"type\":\"uint32\"}],\"name\":\"updateSplit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"walletImplementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"withdrawETH\",\"type\":\"uint256\"},{\"internalType\":\"contract ERC20[]\",\"name\":\"tokens\",\"type\":\"address[]\"}],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"0xSplits <will@0xSplits.xyz>\",\"events\":{\"CancelControlTransfer(address)\":{\"params\":{\"split\":\"Address of the split control transfer was canceled for\"}},\"ControlTransfer(address,address,address)\":{\"params\":{\"newController\":\"Address of the split's new controller\",\"previousController\":\"Address of the split's previous controller\",\"split\":\"Address of the split control was transferred for\"}},\"CreateSplit(address)\":{\"params\":{\"split\":\"Address of the created split\"}},\"DistributeERC20(address,address,uint256,address)\":{\"params\":{\"amount\":\"Amount of ERC20 distributed\",\"distributorAddress\":\"Address to credit distributor fee to\",\"split\":\"Address of the split that distributed its balance\",\"token\":\"Address of ERC20 distributed\"}},\"DistributeETH(address,uint256,address)\":{\"params\":{\"amount\":\"Amount of ETH distributed\",\"distributorAddress\":\"Address to credit distributor fee to\",\"split\":\"Address of the split that distributed its balance\"}},\"InitiateControlTransfer(address,address)\":{\"params\":{\"newPotentialController\":\"Address of the split's new potential controller\",\"split\":\"Address of the split control transfer was initiated for\"}},\"UpdateSplit(address)\":{\"params\":{\"split\":\"Address of the updated split\"}},\"Withdrawal(address,uint256,address[],uint256[])\":{\"params\":{\"account\":\"Address that funds were withdrawn to\",\"ethAmount\":\"Amount of ETH withdrawn\",\"tokenAmounts\":\"Amounts of corresponding ERC20s withdrawn\",\"tokens\":\"Addresses of ERC20s withdrawn\"}}},\"kind\":\"dev\",\"methods\":{},\"title\":\"ISplitMain\",\"version\":1},\"userdoc\":{\"events\":{\"CancelControlTransfer(address)\":{\"notice\":\"emitted after each canceled split control transfer\"},\"ControlTransfer(address,address,address)\":{\"notice\":\"emitted after each successful split control transfer\"},\"CreateSplit(address)\":{\"notice\":\"emitted after each successful split creation\"},\"DistributeERC20(address,address,uint256,address)\":{\"notice\":\"emitted after each successful ERC20 balance split\"},\"DistributeETH(address,uint256,address)\":{\"notice\":\"emitted after each successful ETH balance split\"},\"InitiateControlTransfer(address,address)\":{\"notice\":\"emitted after each initiated split control transfer\"},\"UpdateSplit(address)\":{\"notice\":\"emitted after each successful split update\"},\"Withdrawal(address,uint256,address[],uint256[])\":{\"notice\":\"emitted after each successful withdrawal\"}},\"kind\":\"user\",\"methods\":{\"walletImplementation()\":{\"notice\":\"FUNCTIONS\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/interfaces/ISplitMain.sol\":\"ISplitMain\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/\",\":ds-test/=lib/openzeppelin-contracts/lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/\",\":forge-std/=lib/openzeppelin-contracts/lib/forge-std/src/\",\":openzeppelin-contracts/=lib/openzeppelin-contracts/\"]},\"sources\":{\"lib/openzeppelin-contracts/contracts/interfaces/draft-IERC6093.sol\":{\"keccak256\":\"0x60c65f701957fdd6faea1acb0bb45825791d473693ed9ecb34726fdfaa849dd7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ea290300e0efc4d901244949dc4d877fd46e6c5e43dc2b26620e8efab3ab803f\",\"dweb:/ipfs/QmcLLJppxKeJWqHxE2CUkcfhuRTgHSn8J4kijcLa5MYhSt\"]},\"lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol\":{\"keccak256\":\"0xc3e1fa9d1987f8d349dfb4d6fe93bf2ca014b52ba335cfac30bfe71e357e6f80\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://c5703ccdeb7b1d685e375ed719117e9edf2ab4bc544f24f23b0d50ec82257229\",\"dweb:/ipfs/QmTdwkbQq7owpCiyuzE7eh5LrD2ddrBCZ5WHVsWPi1RrTS\"]},\"lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xc6a8ff0ea489379b61faa647490411b80102578440ab9d84e9a957cc12164e70\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0ea104e577e63faea3b69c415637e99e755dcbf64c5833d7140c35a714d6d90c\",\"dweb:/ipfs/Qmau6x4Ns9XdyynRCNNp3RhLqijJjFm7z5fyZazfYFGYdq\"]},\"lib/openzeppelin-contracts/contracts/token/ERC20/extensions/IERC20Metadata.sol\":{\"keccak256\":\"0xaa761817f6cd7892fcf158b3c776b34551cde36f48ff9703d53898bc45a94ea2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0ad7c8d4d08938c8dfc43d75a148863fb324b80cf53e0a36f7e5a4ac29008850\",\"dweb:/ipfs/QmcrhfPgVNf5mkdhQvy1pMv51TFokD3Y4Wa5WZhFqVh8UV\"]},\"lib/openzeppelin-contracts/contracts/utils/Context.sol\":{\"keccak256\":\"0x75a4ee64c68dbd5f38bddd06e664a64c8271b4caa554fb6f0607dfd672bb4bf3\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0c4e6cb30d3601e2f7af5af09e265508147cb275a8dcd99d6f7363645cc56867\",\"dweb:/ipfs/QmNgFkoXNWoUbAyw71rr1sKQ95Rj2GfvYiWg79xEYDn2NY\"]},\"src/interfaces/ISplitMain.sol\":{\"keccak256\":\"0xcfb472038ef1d7d8286ce17bd85a635138360f35093e46d1c45958f28ce4f14f\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://90202c7be4687a86831f5ec9137367e3834906cddfe82052db1a58656c992ccc\",\"dweb:/ipfs/QmWxx6vF1vjj2tyeexGWNDvaFvcHzV7VrEdaxhez8zEaZs\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.21+commit.d9974bed"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "split",
+              "type": "address",
+              "indexed": true
+            }
+          ],
+          "type": "event",
+          "name": "CancelControlTransfer",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "split",
+              "type": "address",
+              "indexed": true
+            },
+            {
+              "internalType": "address",
+              "name": "previousController",
+              "type": "address",
+              "indexed": true
+            },
+            {
+              "internalType": "address",
+              "name": "newController",
+              "type": "address",
+              "indexed": true
+            }
+          ],
+          "type": "event",
+          "name": "ControlTransfer",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "split",
+              "type": "address",
+              "indexed": true
+            }
+          ],
+          "type": "event",
+          "name": "CreateSplit",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "split",
+              "type": "address",
+              "indexed": true
+            },
+            {
+              "internalType": "contract ERC20",
+              "name": "token",
+              "type": "address",
+              "indexed": true
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256",
+              "indexed": false
+            },
+            {
+              "internalType": "address",
+              "name": "distributorAddress",
+              "type": "address",
+              "indexed": true
+            }
+          ],
+          "type": "event",
+          "name": "DistributeERC20",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "split",
+              "type": "address",
+              "indexed": true
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256",
+              "indexed": false
+            },
+            {
+              "internalType": "address",
+              "name": "distributorAddress",
+              "type": "address",
+              "indexed": true
+            }
+          ],
+          "type": "event",
+          "name": "DistributeETH",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "split",
+              "type": "address",
+              "indexed": true
+            },
+            {
+              "internalType": "address",
+              "name": "newPotentialController",
+              "type": "address",
+              "indexed": true
+            }
+          ],
+          "type": "event",
+          "name": "InitiateControlTransfer",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "split",
+              "type": "address",
+              "indexed": true
+            }
+          ],
+          "type": "event",
+          "name": "UpdateSplit",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "account",
+              "type": "address",
+              "indexed": true
+            },
+            {
+              "internalType": "uint256",
+              "name": "ethAmount",
+              "type": "uint256",
+              "indexed": false
+            },
+            {
+              "internalType": "contract ERC20[]",
+              "name": "tokens",
+              "type": "address[]",
+              "indexed": false
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "tokenAmounts",
+              "type": "uint256[]",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "Withdrawal",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "split",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "acceptControl"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "split",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "cancelControlTransfer"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address[]",
+              "name": "accounts",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint32[]",
+              "name": "percentAllocations",
+              "type": "uint32[]"
+            },
+            {
+              "internalType": "uint32",
+              "name": "distributorFee",
+              "type": "uint32"
+            },
+            {
+              "internalType": "address",
+              "name": "controller",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "createSplit",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "split",
+              "type": "address"
+            },
+            {
+              "internalType": "contract ERC20",
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "internalType": "address[]",
+              "name": "accounts",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint32[]",
+              "name": "percentAllocations",
+              "type": "uint32[]"
+            },
+            {
+              "internalType": "uint32",
+              "name": "distributorFee",
+              "type": "uint32"
+            },
+            {
+              "internalType": "address",
+              "name": "distributorAddress",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "distributeERC20"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "split",
+              "type": "address"
+            },
+            {
+              "internalType": "address[]",
+              "name": "accounts",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint32[]",
+              "name": "percentAllocations",
+              "type": "uint32[]"
+            },
+            {
+              "internalType": "uint32",
+              "name": "distributorFee",
+              "type": "uint32"
+            },
+            {
+              "internalType": "address",
+              "name": "distributorAddress",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "distributeETH"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "split",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "makeSplitImmutable"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address[]",
+              "name": "accounts",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint32[]",
+              "name": "percentAllocations",
+              "type": "uint32[]"
+            },
+            {
+              "internalType": "uint32",
+              "name": "distributorFee",
+              "type": "uint32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "predictImmutableSplitAddress",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "split",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "newController",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "transferControl"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "split",
+              "type": "address"
+            },
+            {
+              "internalType": "contract ERC20",
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "internalType": "address[]",
+              "name": "accounts",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint32[]",
+              "name": "percentAllocations",
+              "type": "uint32[]"
+            },
+            {
+              "internalType": "uint32",
+              "name": "distributorFee",
+              "type": "uint32"
+            },
+            {
+              "internalType": "address",
+              "name": "distributorAddress",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "updateAndDistributeERC20"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "split",
+              "type": "address"
+            },
+            {
+              "internalType": "address[]",
+              "name": "accounts",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint32[]",
+              "name": "percentAllocations",
+              "type": "uint32[]"
+            },
+            {
+              "internalType": "uint32",
+              "name": "distributorFee",
+              "type": "uint32"
+            },
+            {
+              "internalType": "address",
+              "name": "distributorAddress",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "updateAndDistributeETH"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "split",
+              "type": "address"
+            },
+            {
+              "internalType": "address[]",
+              "name": "accounts",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint32[]",
+              "name": "percentAllocations",
+              "type": "uint32[]"
+            },
+            {
+              "internalType": "uint32",
+              "name": "distributorFee",
+              "type": "uint32"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "updateSplit"
+        },
+        {
+          "inputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "walletImplementation",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "withdrawETH",
+              "type": "uint256"
+            },
+            {
+              "internalType": "contract ERC20[]",
+              "name": "tokens",
+              "type": "address[]"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "withdraw"
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {
+          "walletImplementation()": {
+            "notice": "FUNCTIONS"
+          }
+        },
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+        "ds-test/=lib/openzeppelin-contracts/lib/forge-std/lib/ds-test/src/",
+        "erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/",
+        "forge-std/=lib/openzeppelin-contracts/lib/forge-std/src/",
+        "openzeppelin-contracts/=lib/openzeppelin-contracts/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "src/interfaces/ISplitMain.sol": "ISplitMain"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "lib/openzeppelin-contracts/contracts/interfaces/draft-IERC6093.sol": {
+        "keccak256": "0x60c65f701957fdd6faea1acb0bb45825791d473693ed9ecb34726fdfaa849dd7",
+        "urls": [
+          "bzz-raw://ea290300e0efc4d901244949dc4d877fd46e6c5e43dc2b26620e8efab3ab803f",
+          "dweb:/ipfs/QmcLLJppxKeJWqHxE2CUkcfhuRTgHSn8J4kijcLa5MYhSt"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol": {
+        "keccak256": "0xc3e1fa9d1987f8d349dfb4d6fe93bf2ca014b52ba335cfac30bfe71e357e6f80",
+        "urls": [
+          "bzz-raw://c5703ccdeb7b1d685e375ed719117e9edf2ab4bc544f24f23b0d50ec82257229",
+          "dweb:/ipfs/QmTdwkbQq7owpCiyuzE7eh5LrD2ddrBCZ5WHVsWPi1RrTS"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol": {
+        "keccak256": "0xc6a8ff0ea489379b61faa647490411b80102578440ab9d84e9a957cc12164e70",
+        "urls": [
+          "bzz-raw://0ea104e577e63faea3b69c415637e99e755dcbf64c5833d7140c35a714d6d90c",
+          "dweb:/ipfs/Qmau6x4Ns9XdyynRCNNp3RhLqijJjFm7z5fyZazfYFGYdq"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
+        "keccak256": "0xaa761817f6cd7892fcf158b3c776b34551cde36f48ff9703d53898bc45a94ea2",
+        "urls": [
+          "bzz-raw://0ad7c8d4d08938c8dfc43d75a148863fb324b80cf53e0a36f7e5a4ac29008850",
+          "dweb:/ipfs/QmcrhfPgVNf5mkdhQvy1pMv51TFokD3Y4Wa5WZhFqVh8UV"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts/contracts/utils/Context.sol": {
+        "keccak256": "0x75a4ee64c68dbd5f38bddd06e664a64c8271b4caa554fb6f0607dfd672bb4bf3",
+        "urls": [
+          "bzz-raw://0c4e6cb30d3601e2f7af5af09e265508147cb275a8dcd99d6f7363645cc56867",
+          "dweb:/ipfs/QmNgFkoXNWoUbAyw71rr1sKQ95Rj2GfvYiWg79xEYDn2NY"
+        ],
+        "license": "MIT"
+      },
+      "src/interfaces/ISplitMain.sol": {
+        "keccak256": "0xcfb472038ef1d7d8286ce17bd85a635138360f35093e46d1c45958f28ce4f14f",
+        "urls": [
+          "bzz-raw://90202c7be4687a86831f5ec9137367e3834906cddfe82052db1a58656c992ccc",
+          "dweb:/ipfs/QmWxx6vF1vjj2tyeexGWNDvaFvcHzV7VrEdaxhez8zEaZs"
+        ],
+        "license": "GPL-3.0-or-later"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/interfaces/ISplitMain.sol",
+    "id": 28450,
+    "exportedSymbols": {
+      "Context": [
+        2428
+      ],
+      "ERC20": [
+        2119
+      ],
+      "IERC20": [
+        2197
+      ],
+      "IERC20Errors": [
+        189
+      ],
+      "IERC20Metadata": [
+        2223
+      ],
+      "ISplitMain": [
+        28449
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "45:4840:32",
+    "nodes": [
+      {
+        "id": 28234,
+        "nodeType": "PragmaDirective",
+        "src": "45:24:32",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".19"
+        ]
+      },
+      {
+        "id": 28235,
+        "nodeType": "ImportDirective",
+        "src": "71:55:32",
+        "nodes": [],
+        "absolutePath": "lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 28450,
+        "sourceUnit": 2120,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 28449,
+        "nodeType": "ContractDefinition",
+        "src": "197:4687:32",
+        "nodes": [
+          {
+            "id": 28242,
+            "nodeType": "FunctionDefinition",
+            "src": "258:59:32",
+            "nodes": [],
+            "documentation": {
+              "id": 28237,
+              "nodeType": "StructuredDocumentation",
+              "src": "224:28:32",
+              "text": " FUNCTIONS"
+            },
+            "functionSelector": "8117abc1",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "walletImplementation",
+            "nameLocation": "267:20:32",
+            "parameters": {
+              "id": 28238,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "287:2:32"
+            },
+            "returnParameters": {
+              "id": 28241,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28240,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28242,
+                  "src": "308:7:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28239,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "308:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "307:9:32"
+            },
+            "scope": 28449,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 28257,
+            "nodeType": "FunctionDefinition",
+            "src": "323:196:32",
+            "nodes": [],
+            "functionSelector": "7601f782",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createSplit",
+            "nameLocation": "332:11:32",
+            "parameters": {
+              "id": 28253,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28245,
+                  "mutability": "mutable",
+                  "name": "accounts",
+                  "nameLocation": "372:8:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28257,
+                  "src": "353:27:32",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 28243,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "353:7:32",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 28244,
+                    "nodeType": "ArrayTypeName",
+                    "src": "353:9:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28248,
+                  "mutability": "mutable",
+                  "name": "percentAllocations",
+                  "nameLocation": "408:18:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28257,
+                  "src": "390:36:32",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint32_$dyn_calldata_ptr",
+                    "typeString": "uint32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 28246,
+                      "name": "uint32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "390:6:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint32",
+                        "typeString": "uint32"
+                      }
+                    },
+                    "id": 28247,
+                    "nodeType": "ArrayTypeName",
+                    "src": "390:8:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint32_$dyn_storage_ptr",
+                      "typeString": "uint32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28250,
+                  "mutability": "mutable",
+                  "name": "distributorFee",
+                  "nameLocation": "443:14:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28257,
+                  "src": "436:21:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 28249,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "436:6:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28252,
+                  "mutability": "mutable",
+                  "name": "controller",
+                  "nameLocation": "475:10:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28257,
+                  "src": "467:18:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28251,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "467:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "343:148:32"
+            },
+            "returnParameters": {
+              "id": 28256,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28255,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28257,
+                  "src": "510:7:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28254,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "510:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "509:9:32"
+            },
+            "scope": 28449,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 28270,
+            "nodeType": "FunctionDefinition",
+            "src": "525:190:32",
+            "nodes": [],
+            "functionSelector": "52844dd3",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "predictImmutableSplitAddress",
+            "nameLocation": "534:28:32",
+            "parameters": {
+              "id": 28266,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28260,
+                  "mutability": "mutable",
+                  "name": "accounts",
+                  "nameLocation": "591:8:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28270,
+                  "src": "572:27:32",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 28258,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "572:7:32",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 28259,
+                    "nodeType": "ArrayTypeName",
+                    "src": "572:9:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28263,
+                  "mutability": "mutable",
+                  "name": "percentAllocations",
+                  "nameLocation": "627:18:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28270,
+                  "src": "609:36:32",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint32_$dyn_calldata_ptr",
+                    "typeString": "uint32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 28261,
+                      "name": "uint32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "609:6:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint32",
+                        "typeString": "uint32"
+                      }
+                    },
+                    "id": 28262,
+                    "nodeType": "ArrayTypeName",
+                    "src": "609:8:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint32_$dyn_storage_ptr",
+                      "typeString": "uint32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28265,
+                  "mutability": "mutable",
+                  "name": "distributorFee",
+                  "nameLocation": "662:14:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28270,
+                  "src": "655:21:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 28264,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "655:6:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "562:120:32"
+            },
+            "returnParameters": {
+              "id": 28269,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28268,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28270,
+                  "src": "706:7:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28267,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "706:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "705:9:32"
+            },
+            "scope": 28449,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 28283,
+            "nodeType": "FunctionDefinition",
+            "src": "721:173:32",
+            "nodes": [],
+            "functionSelector": "ecef0ace",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateSplit",
+            "nameLocation": "730:11:32",
+            "parameters": {
+              "id": 28281,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28272,
+                  "mutability": "mutable",
+                  "name": "split",
+                  "nameLocation": "759:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28283,
+                  "src": "751:13:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28271,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "751:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28275,
+                  "mutability": "mutable",
+                  "name": "accounts",
+                  "nameLocation": "793:8:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28283,
+                  "src": "774:27:32",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 28273,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "774:7:32",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 28274,
+                    "nodeType": "ArrayTypeName",
+                    "src": "774:9:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28278,
+                  "mutability": "mutable",
+                  "name": "percentAllocations",
+                  "nameLocation": "829:18:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28283,
+                  "src": "811:36:32",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint32_$dyn_calldata_ptr",
+                    "typeString": "uint32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 28276,
+                      "name": "uint32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "811:6:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint32",
+                        "typeString": "uint32"
+                      }
+                    },
+                    "id": 28277,
+                    "nodeType": "ArrayTypeName",
+                    "src": "811:8:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint32_$dyn_storage_ptr",
+                      "typeString": "uint32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28280,
+                  "mutability": "mutable",
+                  "name": "distributorFee",
+                  "nameLocation": "864:14:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28283,
+                  "src": "857:21:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 28279,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "857:6:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "741:143:32"
+            },
+            "returnParameters": {
+              "id": 28282,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "893:0:32"
+            },
+            "scope": 28449,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 28290,
+            "nodeType": "FunctionDefinition",
+            "src": "900:72:32",
+            "nodes": [],
+            "functionSelector": "d0e4b2f4",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "transferControl",
+            "nameLocation": "909:15:32",
+            "parameters": {
+              "id": 28288,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28285,
+                  "mutability": "mutable",
+                  "name": "split",
+                  "nameLocation": "933:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28290,
+                  "src": "925:13:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28284,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "925:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28287,
+                  "mutability": "mutable",
+                  "name": "newController",
+                  "nameLocation": "948:13:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28290,
+                  "src": "940:21:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28286,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "940:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "924:38:32"
+            },
+            "returnParameters": {
+              "id": 28289,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "971:0:32"
+            },
+            "scope": 28449,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 28295,
+            "nodeType": "FunctionDefinition",
+            "src": "978:55:32",
+            "nodes": [],
+            "functionSelector": "1267c6da",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "cancelControlTransfer",
+            "nameLocation": "987:21:32",
+            "parameters": {
+              "id": 28293,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28292,
+                  "mutability": "mutable",
+                  "name": "split",
+                  "nameLocation": "1017:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28295,
+                  "src": "1009:13:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28291,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1009:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1008:15:32"
+            },
+            "returnParameters": {
+              "id": 28294,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1032:0:32"
+            },
+            "scope": 28449,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 28300,
+            "nodeType": "FunctionDefinition",
+            "src": "1039:47:32",
+            "nodes": [],
+            "functionSelector": "c7de6440",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "acceptControl",
+            "nameLocation": "1048:13:32",
+            "parameters": {
+              "id": 28298,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28297,
+                  "mutability": "mutable",
+                  "name": "split",
+                  "nameLocation": "1070:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28300,
+                  "src": "1062:13:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28296,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1062:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1061:15:32"
+            },
+            "returnParameters": {
+              "id": 28299,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1085:0:32"
+            },
+            "scope": 28449,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 28305,
+            "nodeType": "FunctionDefinition",
+            "src": "1092:52:32",
+            "nodes": [],
+            "functionSelector": "189cbaa0",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "makeSplitImmutable",
+            "nameLocation": "1101:18:32",
+            "parameters": {
+              "id": 28303,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28302,
+                  "mutability": "mutable",
+                  "name": "split",
+                  "nameLocation": "1128:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28305,
+                  "src": "1120:13:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28301,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1120:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1119:15:32"
+            },
+            "returnParameters": {
+              "id": 28304,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1143:0:32"
+            },
+            "scope": 28449,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 28320,
+            "nodeType": "FunctionDefinition",
+            "src": "1150:211:32",
+            "nodes": [],
+            "functionSelector": "e61cb05e",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "distributeETH",
+            "nameLocation": "1159:13:32",
+            "parameters": {
+              "id": 28318,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28307,
+                  "mutability": "mutable",
+                  "name": "split",
+                  "nameLocation": "1190:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28320,
+                  "src": "1182:13:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28306,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1182:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28310,
+                  "mutability": "mutable",
+                  "name": "accounts",
+                  "nameLocation": "1224:8:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28320,
+                  "src": "1205:27:32",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 28308,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1205:7:32",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 28309,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1205:9:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28313,
+                  "mutability": "mutable",
+                  "name": "percentAllocations",
+                  "nameLocation": "1260:18:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28320,
+                  "src": "1242:36:32",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint32_$dyn_calldata_ptr",
+                    "typeString": "uint32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 28311,
+                      "name": "uint32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1242:6:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint32",
+                        "typeString": "uint32"
+                      }
+                    },
+                    "id": 28312,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1242:8:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint32_$dyn_storage_ptr",
+                      "typeString": "uint32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28315,
+                  "mutability": "mutable",
+                  "name": "distributorFee",
+                  "nameLocation": "1295:14:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28320,
+                  "src": "1288:21:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 28314,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1288:6:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28317,
+                  "mutability": "mutable",
+                  "name": "distributorAddress",
+                  "nameLocation": "1327:18:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28320,
+                  "src": "1319:26:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28316,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1319:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1172:179:32"
+            },
+            "returnParameters": {
+              "id": 28319,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1360:0:32"
+            },
+            "scope": 28449,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 28335,
+            "nodeType": "FunctionDefinition",
+            "src": "1367:220:32",
+            "nodes": [],
+            "functionSelector": "a5e3909e",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateAndDistributeETH",
+            "nameLocation": "1376:22:32",
+            "parameters": {
+              "id": 28333,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28322,
+                  "mutability": "mutable",
+                  "name": "split",
+                  "nameLocation": "1416:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28335,
+                  "src": "1408:13:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28321,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1408:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28325,
+                  "mutability": "mutable",
+                  "name": "accounts",
+                  "nameLocation": "1450:8:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28335,
+                  "src": "1431:27:32",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 28323,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1431:7:32",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 28324,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1431:9:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28328,
+                  "mutability": "mutable",
+                  "name": "percentAllocations",
+                  "nameLocation": "1486:18:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28335,
+                  "src": "1468:36:32",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint32_$dyn_calldata_ptr",
+                    "typeString": "uint32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 28326,
+                      "name": "uint32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1468:6:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint32",
+                        "typeString": "uint32"
+                      }
+                    },
+                    "id": 28327,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1468:8:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint32_$dyn_storage_ptr",
+                      "typeString": "uint32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28330,
+                  "mutability": "mutable",
+                  "name": "distributorFee",
+                  "nameLocation": "1521:14:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28335,
+                  "src": "1514:21:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 28329,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1514:6:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28332,
+                  "mutability": "mutable",
+                  "name": "distributorAddress",
+                  "nameLocation": "1553:18:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28335,
+                  "src": "1545:26:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28331,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1545:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1398:179:32"
+            },
+            "returnParameters": {
+              "id": 28334,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1586:0:32"
+            },
+            "scope": 28449,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 28353,
+            "nodeType": "FunctionDefinition",
+            "src": "1593:234:32",
+            "nodes": [],
+            "functionSelector": "15811302",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "distributeERC20",
+            "nameLocation": "1602:15:32",
+            "parameters": {
+              "id": 28351,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28337,
+                  "mutability": "mutable",
+                  "name": "split",
+                  "nameLocation": "1635:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28353,
+                  "src": "1627:13:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28336,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1627:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28340,
+                  "mutability": "mutable",
+                  "name": "token",
+                  "nameLocation": "1656:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28353,
+                  "src": "1650:11:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_ERC20_$2119",
+                    "typeString": "contract ERC20"
+                  },
+                  "typeName": {
+                    "id": 28339,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 28338,
+                      "name": "ERC20",
+                      "nameLocations": [
+                        "1650:5:32"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 2119,
+                      "src": "1650:5:32"
+                    },
+                    "referencedDeclaration": 2119,
+                    "src": "1650:5:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ERC20_$2119",
+                      "typeString": "contract ERC20"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28343,
+                  "mutability": "mutable",
+                  "name": "accounts",
+                  "nameLocation": "1690:8:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28353,
+                  "src": "1671:27:32",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 28341,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1671:7:32",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 28342,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1671:9:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28346,
+                  "mutability": "mutable",
+                  "name": "percentAllocations",
+                  "nameLocation": "1726:18:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28353,
+                  "src": "1708:36:32",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint32_$dyn_calldata_ptr",
+                    "typeString": "uint32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 28344,
+                      "name": "uint32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1708:6:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint32",
+                        "typeString": "uint32"
+                      }
+                    },
+                    "id": 28345,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1708:8:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint32_$dyn_storage_ptr",
+                      "typeString": "uint32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28348,
+                  "mutability": "mutable",
+                  "name": "distributorFee",
+                  "nameLocation": "1761:14:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28353,
+                  "src": "1754:21:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 28347,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1754:6:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28350,
+                  "mutability": "mutable",
+                  "name": "distributorAddress",
+                  "nameLocation": "1793:18:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28353,
+                  "src": "1785:26:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28349,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1785:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1617:200:32"
+            },
+            "returnParameters": {
+              "id": 28352,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1826:0:32"
+            },
+            "scope": 28449,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 28371,
+            "nodeType": "FunctionDefinition",
+            "src": "1833:243:32",
+            "nodes": [],
+            "functionSelector": "77b1e4e9",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateAndDistributeERC20",
+            "nameLocation": "1842:24:32",
+            "parameters": {
+              "id": 28369,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28355,
+                  "mutability": "mutable",
+                  "name": "split",
+                  "nameLocation": "1884:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28371,
+                  "src": "1876:13:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28354,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1876:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28358,
+                  "mutability": "mutable",
+                  "name": "token",
+                  "nameLocation": "1905:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28371,
+                  "src": "1899:11:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_ERC20_$2119",
+                    "typeString": "contract ERC20"
+                  },
+                  "typeName": {
+                    "id": 28357,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 28356,
+                      "name": "ERC20",
+                      "nameLocations": [
+                        "1899:5:32"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 2119,
+                      "src": "1899:5:32"
+                    },
+                    "referencedDeclaration": 2119,
+                    "src": "1899:5:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ERC20_$2119",
+                      "typeString": "contract ERC20"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28361,
+                  "mutability": "mutable",
+                  "name": "accounts",
+                  "nameLocation": "1939:8:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28371,
+                  "src": "1920:27:32",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 28359,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1920:7:32",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 28360,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1920:9:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28364,
+                  "mutability": "mutable",
+                  "name": "percentAllocations",
+                  "nameLocation": "1975:18:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28371,
+                  "src": "1957:36:32",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint32_$dyn_calldata_ptr",
+                    "typeString": "uint32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 28362,
+                      "name": "uint32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1957:6:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint32",
+                        "typeString": "uint32"
+                      }
+                    },
+                    "id": 28363,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1957:8:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint32_$dyn_storage_ptr",
+                      "typeString": "uint32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28366,
+                  "mutability": "mutable",
+                  "name": "distributorFee",
+                  "nameLocation": "2010:14:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28371,
+                  "src": "2003:21:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 28365,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2003:6:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28368,
+                  "mutability": "mutable",
+                  "name": "distributorAddress",
+                  "nameLocation": "2042:18:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28371,
+                  "src": "2034:26:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28367,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2034:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1866:200:32"
+            },
+            "returnParameters": {
+              "id": 28370,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2075:0:32"
+            },
+            "scope": 28449,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 28382,
+            "nodeType": "FunctionDefinition",
+            "src": "2082:120:32",
+            "nodes": [],
+            "functionSelector": "6e5f6919",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "withdraw",
+            "nameLocation": "2091:8:32",
+            "parameters": {
+              "id": 28380,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28373,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "2117:7:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28382,
+                  "src": "2109:15:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28372,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2109:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28375,
+                  "mutability": "mutable",
+                  "name": "withdrawETH",
+                  "nameLocation": "2142:11:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28382,
+                  "src": "2134:19:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 28374,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2134:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28379,
+                  "mutability": "mutable",
+                  "name": "tokens",
+                  "nameLocation": "2180:6:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28382,
+                  "src": "2163:23:32",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_contract$_ERC20_$2119_$dyn_calldata_ptr",
+                    "typeString": "contract ERC20[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 28377,
+                      "nodeType": "UserDefinedTypeName",
+                      "pathNode": {
+                        "id": 28376,
+                        "name": "ERC20",
+                        "nameLocations": [
+                          "2163:5:32"
+                        ],
+                        "nodeType": "IdentifierPath",
+                        "referencedDeclaration": 2119,
+                        "src": "2163:5:32"
+                      },
+                      "referencedDeclaration": 2119,
+                      "src": "2163:5:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_ERC20_$2119",
+                        "typeString": "contract ERC20"
+                      }
+                    },
+                    "id": 28378,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2163:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_contract$_ERC20_$2119_$dyn_storage_ptr",
+                      "typeString": "contract ERC20[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2099:93:32"
+            },
+            "returnParameters": {
+              "id": 28381,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2201:0:32"
+            },
+            "scope": 28449,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 28387,
+            "nodeType": "EventDefinition",
+            "src": "2358:41:32",
+            "nodes": [],
+            "anonymous": false,
+            "documentation": {
+              "id": 28383,
+              "nodeType": "StructuredDocumentation",
+              "src": "2239:114:32",
+              "text": "@notice emitted after each successful split creation\n  @param split Address of the created split"
+            },
+            "eventSelector": "8d5f9943c664a3edaf4d3eb18cc5e2c45a7d2dc5869be33d33bbc0fff9bc2590",
+            "name": "CreateSplit",
+            "nameLocation": "2364:11:32",
+            "parameters": {
+              "id": 28386,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28385,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "split",
+                  "nameLocation": "2392:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28387,
+                  "src": "2376:21:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28384,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2376:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2375:23:32"
+            }
+          },
+          {
+            "id": 28392,
+            "nodeType": "EventDefinition",
+            "src": "2522:41:32",
+            "nodes": [],
+            "anonymous": false,
+            "documentation": {
+              "id": 28388,
+              "nodeType": "StructuredDocumentation",
+              "src": "2405:112:32",
+              "text": "@notice emitted after each successful split update\n  @param split Address of the updated split"
+            },
+            "eventSelector": "45e1e99513dd915ac128b94953ca64c6375717ea1894b3114db08cdca51debd2",
+            "name": "UpdateSplit",
+            "nameLocation": "2528:11:32",
+            "parameters": {
+              "id": 28391,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28390,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "split",
+                  "nameLocation": "2556:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28392,
+                  "src": "2540:21:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28389,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2540:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2539:23:32"
+            }
+          },
+          {
+            "id": 28399,
+            "nodeType": "EventDefinition",
+            "src": "2808:115:32",
+            "nodes": [],
+            "anonymous": false,
+            "documentation": {
+              "id": 28393,
+              "nodeType": "StructuredDocumentation",
+              "src": "2569:234:32",
+              "text": "@notice emitted after each initiated split control transfer\n  @param split Address of the split control transfer was initiated for\n  @param newPotentialController Address of the split's new potential controller"
+            },
+            "eventSelector": "107cf6ea8668d533df1aab5bb8b6315bb0c25f0b6c955558d09368f290668fc7",
+            "name": "InitiateControlTransfer",
+            "nameLocation": "2814:23:32",
+            "parameters": {
+              "id": 28398,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28395,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "split",
+                  "nameLocation": "2863:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28399,
+                  "src": "2847:21:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28394,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2847:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28397,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "newPotentialController",
+                  "nameLocation": "2894:22:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28399,
+                  "src": "2878:38:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28396,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2878:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2837:85:32"
+            }
+          },
+          {
+            "id": 28404,
+            "nodeType": "EventDefinition",
+            "src": "3080:51:32",
+            "nodes": [],
+            "anonymous": false,
+            "documentation": {
+              "id": 28400,
+              "nodeType": "StructuredDocumentation",
+              "src": "2929:146:32",
+              "text": "@notice emitted after each canceled split control transfer\n  @param split Address of the split control transfer was canceled for"
+            },
+            "eventSelector": "6c2460a415b84be3720c209fe02f2cad7a6bcba21e8637afe8957b7ec4b6ef87",
+            "name": "CancelControlTransfer",
+            "nameLocation": "3086:21:32",
+            "parameters": {
+              "id": 28403,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28402,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "split",
+                  "nameLocation": "3124:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28404,
+                  "src": "3108:21:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28401,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3108:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3107:23:32"
+            }
+          },
+          {
+            "id": 28413,
+            "nodeType": "EventDefinition",
+            "src": "3428:142:32",
+            "nodes": [],
+            "anonymous": false,
+            "documentation": {
+              "id": 28405,
+              "nodeType": "StructuredDocumentation",
+              "src": "3137:286:32",
+              "text": "@notice emitted after each successful split control transfer\n  @param split Address of the split control was transferred for\n  @param previousController Address of the split's previous controller\n  @param newController Address of the split's new controller"
+            },
+            "eventSelector": "943d69cf2bbe08a9d44b3c4ce6da17d939d758739370620871ce99a6437866d0",
+            "name": "ControlTransfer",
+            "nameLocation": "3434:15:32",
+            "parameters": {
+              "id": 28412,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28407,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "split",
+                  "nameLocation": "3475:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28413,
+                  "src": "3459:21:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28406,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3459:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28409,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "previousController",
+                  "nameLocation": "3506:18:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28413,
+                  "src": "3490:34:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28408,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3490:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28411,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "newController",
+                  "nameLocation": "3550:13:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28413,
+                  "src": "3534:29:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28410,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3534:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3449:120:32"
+            }
+          },
+          {
+            "id": 28422,
+            "nodeType": "EventDefinition",
+            "src": "3838:125:32",
+            "nodes": [],
+            "anonymous": false,
+            "documentation": {
+              "id": 28414,
+              "nodeType": "StructuredDocumentation",
+              "src": "3576:257:32",
+              "text": "@notice emitted after each successful ETH balance split\n  @param split Address of the split that distributed its balance\n  @param amount Amount of ETH distributed\n  @param distributorAddress Address to credit distributor fee to"
+            },
+            "eventSelector": "87c3ca0a87d9b82033e4bc55e6d30621f8d7e0c9d8ca7988edfde8932787b77b",
+            "name": "DistributeETH",
+            "nameLocation": "3844:13:32",
+            "parameters": {
+              "id": 28421,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28416,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "split",
+                  "nameLocation": "3883:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28422,
+                  "src": "3867:21:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28415,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3867:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28418,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "3906:6:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28422,
+                  "src": "3898:14:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 28417,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3898:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28420,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "distributorAddress",
+                  "nameLocation": "3938:18:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28422,
+                  "src": "3922:34:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28419,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3922:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3857:105:32"
+            }
+          },
+          {
+            "id": 28434,
+            "nodeType": "EventDefinition",
+            "src": "4285:156:32",
+            "nodes": [],
+            "anonymous": false,
+            "documentation": {
+              "id": 28423,
+              "nodeType": "StructuredDocumentation",
+              "src": "3969:311:32",
+              "text": "@notice emitted after each successful ERC20 balance split\n  @param split Address of the split that distributed its balance\n  @param token Address of ERC20 distributed\n  @param amount Amount of ERC20 distributed\n  @param distributorAddress Address to credit distributor fee to"
+            },
+            "eventSelector": "b5ee5dc3d2c31a019bbf2c787e0e9c97971c96aceea1c38c12fc8fd25c536d46",
+            "name": "DistributeERC20",
+            "nameLocation": "4291:15:32",
+            "parameters": {
+              "id": 28433,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28425,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "split",
+                  "nameLocation": "4332:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28434,
+                  "src": "4316:21:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28424,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4316:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28428,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "token",
+                  "nameLocation": "4361:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28434,
+                  "src": "4347:19:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_ERC20_$2119",
+                    "typeString": "contract ERC20"
+                  },
+                  "typeName": {
+                    "id": 28427,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 28426,
+                      "name": "ERC20",
+                      "nameLocations": [
+                        "4347:5:32"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 2119,
+                      "src": "4347:5:32"
+                    },
+                    "referencedDeclaration": 2119,
+                    "src": "4347:5:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ERC20_$2119",
+                      "typeString": "contract ERC20"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28430,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "4384:6:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28434,
+                  "src": "4376:14:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 28429,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4376:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28432,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "distributorAddress",
+                  "nameLocation": "4416:18:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28434,
+                  "src": "4400:34:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28431,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4400:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4306:134:32"
+            }
+          },
+          {
+            "id": 28448,
+            "nodeType": "EventDefinition",
+            "src": "4743:139:32",
+            "nodes": [],
+            "anonymous": false,
+            "documentation": {
+              "id": 28435,
+              "nodeType": "StructuredDocumentation",
+              "src": "4447:291:32",
+              "text": "@notice emitted after each successful withdrawal\n  @param account Address that funds were withdrawn to\n  @param ethAmount Amount of ETH withdrawn\n  @param tokens Addresses of ERC20s withdrawn\n  @param tokenAmounts Amounts of corresponding ERC20s withdrawn"
+            },
+            "eventSelector": "a9e30bf144f83390a4fe47562a4e16892108102221c674ff538da0b72a83d174",
+            "name": "Withdrawal",
+            "nameLocation": "4749:10:32",
+            "parameters": {
+              "id": 28447,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28437,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "4785:7:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28448,
+                  "src": "4769:23:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28436,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4769:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28439,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "ethAmount",
+                  "nameLocation": "4810:9:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28448,
+                  "src": "4802:17:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 28438,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4802:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28443,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "tokens",
+                  "nameLocation": "4837:6:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28448,
+                  "src": "4829:14:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_contract$_ERC20_$2119_$dyn_memory_ptr",
+                    "typeString": "contract ERC20[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 28441,
+                      "nodeType": "UserDefinedTypeName",
+                      "pathNode": {
+                        "id": 28440,
+                        "name": "ERC20",
+                        "nameLocations": [
+                          "4829:5:32"
+                        ],
+                        "nodeType": "IdentifierPath",
+                        "referencedDeclaration": 2119,
+                        "src": "4829:5:32"
+                      },
+                      "referencedDeclaration": 2119,
+                      "src": "4829:5:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_ERC20_$2119",
+                        "typeString": "contract ERC20"
+                      }
+                    },
+                    "id": 28442,
+                    "nodeType": "ArrayTypeName",
+                    "src": "4829:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_contract$_ERC20_$2119_$dyn_storage_ptr",
+                      "typeString": "contract ERC20[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28446,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "tokenAmounts",
+                  "nameLocation": "4863:12:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28448,
+                  "src": "4853:22:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 28444,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "4853:7:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 28445,
+                    "nodeType": "ArrayTypeName",
+                    "src": "4853:9:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4759:122:32"
+            }
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "ISplitMain",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 28236,
+          "nodeType": "StructuredDocumentation",
+          "src": "128:68:32",
+          "text": " @title ISplitMain\n @author 0xSplits <will@0xSplits.xyz>"
+        },
+        "fullyImplemented": false,
+        "linearizedBaseContracts": [
+          28449
+        ],
+        "name": "ISplitMain",
+        "nameLocation": "207:10:32",
+        "scope": 28450,
+        "usedErrors": [],
+        "usedEvents": [
+          28387,
+          28392,
+          28399,
+          28404,
+          28413,
+          28422,
+          28434,
+          28448
+        ]
+      }
+    ],
+    "license": "GPL-3.0-or-later"
+  },
+  "id": 32
+}
