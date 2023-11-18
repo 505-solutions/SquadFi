@@ -2,8 +2,8 @@
 
 import { FooterCentered } from '@/components/Footer/FooterCentered';
 import { HeaderMegaMenu } from '@/components/Header/HeaderMegaMenu';
-import { Badge, Button, Code, Group, Input, Modal } from '@mantine/core';
-import { IconSearch, IconUserBolt } from '@tabler/icons-react';
+import { Badge, Button, Code, Group, Input, Modal, TextInput } from '@mantine/core';
+import { IconSearch, IconUserBolt, IconUsersGroup } from '@tabler/icons-react';
 import { useState } from 'react';
 import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link';
@@ -69,57 +69,75 @@ export default function ExploreClusters() {
   
   return (
     <>
+      <Group
+        style={{
+          backgroundImage: `url(/background.png)`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          width: '100%',
+          padding: '0',
+          margin: '0',
+          display: 'block',
+          minHeight: '100%',
+          alignContent: 'space-between',
+          flexDirection: 'column',
+        }}
+      >
       <HeaderMegaMenu />
 
-      <Group style={{flexDirection: 'column'}}>
+      <Group style={{flexDirection: 'column', width: '600px', margin: 'auto'}}>
         <h1 style={{display: 'block', margin: 'auto'}}>Explore clusters</h1>
       
-        <Group style={{ display: 'flex', alignItems: 'center' }}>
-          <Input
-            placeholder="Enter cluster name"
-            value={searchValue}
-            onChange={(event) => setSearchValue(event.target.value)}
-            size='lg'
-            rightSection={<IconSearch />}
-          />
-        </Group>
+        <p style={{color: '#E2D04B', fontWeight: 700, alignSelf: "baseline", margin: 0}}>SQUAD NAME</p>
+        <TextInput
+          placeholder="Search cluster name"
+          inputWrapperOrder={['label', 'error', 'input', 'description']}
+          leftSection={<IconUsersGroup size={16} />}
+          onChange={event => setSearchValue(event.target.value)}
+          size='xl'
+          variant='unstyled'
+          style={{
+            border: '1px solid #E2D04B',
+            width: '100%'
+          }}
+        />
 
-        <Group style={{justifyContent: 'left', flexDirection: 'column'}}>
+        <Group style={{justifyContent: 'left', flexDirection: 'column', width: '100%'}}>
           {clusters.filter((cluster) => cluster.name.toLowerCase().startsWith(searchValue.toLowerCase())).map((cluster, i) => (
             <Group key={cluster.name} style={{justifyContent: 'space-between', width: '100%'}}>
               <h3 style={{textAlign: 'left'}}>{cluster.name}</h3>
               <p>Num validators: {cluster.validators.length}</p>
-              <Button onClick={() => {
-                setSelectedId(i);
-                open();
-              }}>View cluster</Button>
+              <Button color='transparent'
+                style={{border: '1px solid #E2D04B'}}
+                onClick={() => {
+                  setSelectedId(i);
+                  open();
+                }}>View cluster</Button>
             </Group>
           ))}
         </Group>
       </Group>
 
       { selectedId != -1 &&
-        <Modal opened={opened} onClose={close} title="View cluster" centered size="xl">
+        <Modal opened={opened} onClose={close} centered size="xl" color="red">
             <Group style={{alignItems: 'center'}}>
-              <h2>{clusters[selectedId].name}</h2>
+              <h2 style={{color: '#E2D04B'}}>{clusters[selectedId].name}</h2>
               <p>(Num validators: {clusters[selectedId].validators.length})</p>
             </Group>
             { clusters[selectedId].validators.map((validator) => (
               <Group key={validator.id}>
-              <IconUserBolt />
-              <p>
-                Validator{validator.id}
-              </p>
-              <p>
-                <strong>{validator.name}</strong>
+              <IconUserBolt color='#E2D04B' />
+              <p style={{color: '#E2D04B'}}>
+                <b>Validator{validator.id}</b>
               </p>
               <p>
                 <i>{validator.addr}</i>
               </p>
               { validator.status == "ready" ?
-                <Badge color="green">Ready</Badge>
+                <Badge color="green" style={{color: "black"}}>Ready</Badge>
                 :
-                <Badge color="yellow">Wait</Badge>
+                <Badge color="red">Wait</Badge>
               }
             </Group>
             ))}
@@ -136,13 +154,14 @@ export default function ExploreClusters() {
                 href="http://74.234.16.180:3000/d/laEp8vupp/local-docker-cluster-dashboard?orgId=1&refresh=10s"
                 target="_blank"
               >
-                <Button>View cluster dashboard</Button>
+                <Button color="#E2D04B" style={{color: 'black'}}>View cluster dashboard</Button>
               </Link>
             </Group>
         </Modal>
       }
 
       <FooterCentered />
+      </Group>
     </>
   );
 }

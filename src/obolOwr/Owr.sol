@@ -1,9 +1,12 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-pragma solidity 0.8.19;
+pragma solidity ^0.8.19;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract OptimisticWithdrawalRecipient {
+import "forge-std/console.sol";
+
+contract OptimisticWithdrawalRecipient is Ownable {
     /// Invalid token recovery recipient
     error InvalidTokenRecovery_InvalidRecipient();
 
@@ -53,21 +56,6 @@ contract OptimisticWithdrawalRecipient {
     uint256 internal constant PRINCIPAL_RECIPIENT_INDEX = 0;
     uint256 internal constant REWARD_RECIPIENT_INDEX = 1;
 
-    // recoveryAddress (address, 20 bytes),
-    // tranches (uint256[], numTranches * 32 bytes)
-
-    // 0; first item
-    uint256 internal constant RECOVERY_ADDRESS_OFFSET = 0;
-    // 20 = recoveryAddress_offset (0) + recoveryAddress_size (address, 20
-    // bytes)
-    uint256 internal constant TRANCHES_OFFSET = 20;
-
-    /// Address to recover non-OWR tokens to
-    /// @dev equivalent to address public immutable recoveryAddress;
-    function recoveryAddress() public pure returns (address) {
-        return _getArgAddress(RECOVERY_ADDRESS_OFFSET);
-    }
-
     uint128 public fundsPendingWithdrawal;
 
     uint128 public claimedPrincipalFunds;
@@ -82,8 +70,14 @@ contract OptimisticWithdrawalRecipient {
     constructor(
         address _recoveryAddress,
         address _principalRecipient,
-        uint256 _amountOfPrincipalStake
-    ) {}
+        uint256 _amountOfPrincipalStake,
+        address initialOwner
+    ) Ownable(initialOwner) {}
+
+    // Called in activate withdrawal after the fee splitter is created
+    function setRewardRecipient(address _rewardRecipient) public onlyOwner {
+        rewardRecipient = _rewardRecipient;
+    }
 
     function distributeFunds() external payable {
         _distributeFunds(PUSH);
@@ -108,20 +102,14 @@ contract OptimisticWithdrawalRecipient {
         // if recoveryAddress is set, recipient must match it
         // else, recipient must be one of the OWR recipients
 
-        address _recoveryAddress = recoveryAddress();
-        if (_recoveryAddress == address(0)) {
+        if (recoveryAddress == address(0)) {
             // ensure txn recipient is a valid OWR recipient
-            (
-                address principalRecipient,
-                address rewardRecipient,
-
-            ) = getTranches();
             if (
                 recipient != principalRecipient && recipient != rewardRecipient
             ) {
                 revert InvalidTokenRecovery_InvalidRecipient();
             }
-        } else if (recipient != _recoveryAddress) {
+        } else if (recipient != recoveryAddress) {
             revert InvalidTokenRecovery_InvalidRecipient();
         }
 
@@ -130,8 +118,8 @@ contract OptimisticWithdrawalRecipient {
         /// interactions
 
         // recover non-target token
-        uint256 amount = ERC20(nonOWRToken).balanceOf(address(this));
-        nonOWRToken.safeTransfer(recipient, amount);
+        uint256 amount = IERC20(nonOWRToken).balanceOf(address(this));
+        IERC20(nonOWRToken).transfer(recipient, amount);
 
         emit RecoverNonOWRecipientFunds(nonOWRToken, recipient, amount);
     }
@@ -145,33 +133,9 @@ contract OptimisticWithdrawalRecipient {
             fundsPendingWithdrawal -= uint128(tokenAmount);
         }
         pullBalances[account] = 0;
-        account.safeTransferETH(tokenAmount);
+        payable(account).transfer(tokenAmount);
 
         emit Withdrawal(account, tokenAmount);
-    }
-
-    /// -----------------------------------------------------------------------
-    /// functions - view & pure
-    /// -----------------------------------------------------------------------
-
-    /// Return unpacked tranches
-    /// @return principalRecipient Addres of principal recipient
-    /// @return rewardRecipient Address of reward recipient
-    /// @return amountOfPrincipalStake Absolute payment threshold for principal
-    function getTranches()
-        public
-        pure
-        returns (
-            address principalRecipient,
-            address rewardRecipient,
-            uint256 amountOfPrincipalStake
-        )
-    {
-        uint256 tranche = _getTranche(PRINCIPAL_RECIPIENT_INDEX);
-        principalRecipient = address(uint160(tranche));
-        amountOfPrincipalStake = tranche >> ADDRESS_BITS;
-
-        rewardRecipient = address(uint160(_getTranche(REWARD_RECIPIENT_INDEX)));
     }
 
     /// Returns the balance for account `account`
@@ -198,12 +162,6 @@ contract OptimisticWithdrawalRecipient {
         uint256 _memoryFundsPendingWithdrawal = uint256(fundsPendingWithdrawal);
         uint256 _fundsToBeDistributed = currentbalance -
             _memoryFundsPendingWithdrawal;
-
-        (
-            address principalRecipient,
-            address rewardRecipient,
-            uint256 amountOfPrincipalStake
-        ) = getTranches();
 
         // determine which recipeint is getting paid based on funds to be
         // distributed
@@ -283,7 +241,7 @@ contract OptimisticWithdrawalRecipient {
                 // Write to Storage
                 pullBalances[recipient] += payoutAmount;
             } else {
-                recipient.safeTransferETH(payoutAmount);
+                payable(recipient).transfer(payoutAmount);
             }
         }
     }
