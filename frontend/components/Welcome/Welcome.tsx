@@ -1,25 +1,39 @@
 'use client';
 
-import { Title, Text, Anchor } from '@mantine/core';
+import { Title, Text, Anchor, Image } from '@mantine/core';
 import classes from './Welcome.module.css';
+import landingTop from '../../public/landingTop.png'
+import NextImage from 'next/image';
 
 export function Welcome() {
   return (
     <>
-      <Title className={classes.title} ta="center" mt={100}>
+      <Title className={classes.title} ta="center" mt={50}>
         Welcome to{' '}
-        <Text inherit variant="gradient" component="span" gradient={{ from: 'blue', to: 'violet' }}>
+        <Text inherit variant="gradient" component="span" gradient={{ from: '#EEAD36', to: '#E97333' }}>
           SquadFi
         </Text>
       </Title>
-      <Text c="dimmed" ta="center" size="lg" maw={580} mx="auto" mt="xl">
-        This starter Next.js project includes a minimal setup for server side rendering, if you want
-        to learn more on Mantine + Next.js integration follow{' '}
-        <Anchor href="https://mantine.dev/guides/next/" size="lg">
-          this guide
-        </Anchor>
-        . To get started edit page.tsx file.
-      </Text>
+      <Title style={{
+        color: '#FCE0A9',
+        textAlign: 'center',
+        fontSize: '23px',
+        fontStyle: 'normal',
+        fontWeight: '500',
+        lineHeight: 'normal',
+        width: '80%',
+        margin: 'auto',
+        marginBottom: '30px',
+      }}>
+        SquadFi lets you easily bootstrap censorship-resistant, and trustless multi-paw validator squads. Preserve decentralization and resiliency of the Ethereum network.
+      </Title>
+      <Image
+        radius="md"
+        component={NextImage}
+        alt='Cats'
+        src={landingTop}
+        style={{width: '40%', margin: 'auto', height: 'auto'}}
+      />
     </>
   );
 }

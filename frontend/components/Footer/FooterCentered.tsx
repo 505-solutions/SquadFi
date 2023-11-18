@@ -1,16 +1,14 @@
 'use client';
 
-import { Anchor, Group, ActionIcon, rem } from '@mantine/core';
+import { Anchor, Group, ActionIcon, rem, Image } from '@mantine/core';
 import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
-import { MantineLogo } from '@mantine/ds';
 import classes from './FooterCentered.module.css';
+import NextImage from 'next/image';
+import obolLogo from "../../public/obolLogo.png";
+
 
 const links = [
-  { link: '#', label: 'Contact' },
-  { link: '#', label: 'Privacy' },
-  { link: '#', label: 'Blog' },
-  { link: '#', label: 'Store' },
-  { link: '#', label: 'Careers' },
+  { link: '#', label: 'Built with ❤️ by 505 Solutions' },
 ];
 
 export function FooterCentered() {
@@ -29,8 +27,14 @@ export function FooterCentered() {
 
   return (
     <div className={classes.footer}>
-      <div className={classes.inner}>
-        <MantineLogo size={28} />
+      <div className={classes.inner} style={{alignItems: 'baseline'}}>
+        <Image
+          radius="md"
+          component={NextImage}
+          alt='Cats'
+          src={obolLogo}
+          style={{width: '200px', borderRadius: '50px', height: 'auto', marginTop: '25px', marginLeft: '10px'}}
+        />
 
         <Group className={classes.links}>{items}</Group>
 

@@ -4,7 +4,7 @@ import { FooterCentered } from '@/components/Footer/FooterCentered';
 import { HeaderMegaMenu } from '@/components/Header/HeaderMegaMenu';
 import { Group, TextInput, Button, Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconCheck, IconCircleCheck } from '@tabler/icons-react';
+import { IconAddressBook, IconCheck, IconCircleCheck } from '@tabler/icons-react';
 import { IconBlockquote, IconPlus, IconUserBolt, IconUserSquare, IconUsersGroup } from '@tabler/icons-react';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -30,8 +30,20 @@ export default function CreateCluster() {
 
   return (
     <>
+      <Group
+        style={{
+          backgroundImage: `url(/background.png)`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          width: '100%',
+          padding: '0',
+          margin: '0',
+          display: 'block',
+        }}
+      >
       <HeaderMegaMenu />
-      
+
       <Group style={{flexDirection: 'column'}}>
         <h1 style={{display: 'block', margin: 'auto'}}>Create a cluster</h1>
 
@@ -78,14 +90,22 @@ export default function CreateCluster() {
             value={vAddr}
             onChange={(event) => setVAddr(event.currentTarget.value)}
           />
-          <Button onClick={addValidator} leftSection={<IconPlus />}>Add validator</Button>
+          <Button color='#E97333' onClick={addValidator} leftSection={<IconPlus />}>Add validator</Button>
         </Group>
         <p>Treshold: {Math.ceil(validators.length * 2 / 3)}/{validators.length}</p>
-      
+        
+        <TextInput
+          placeholder="SAFE address"
+          inputWrapperOrder={['label', 'error', 'input', 'description']}
+          leftSection={<IconAddressBook size={16} />}
+          onChange={(event) => setName(event.currentTarget.value)}
+          size='xl'
+        />
+
         <Button
-          style={{marginTop: '20px'}}
+          style={{marginTop: '20px', backgroundColor: "#EEAD36"}}
           variant="gradient"
-          gradient={{ from: 'blue', to: 'violet', deg: 90 }}
+          gradient={{ from: '#EEAD36', to: '#E97333', deg: 90 }}
           size="xl"
           leftSection={<IconCheck />}
           onClick={open}
@@ -99,11 +119,12 @@ export default function CreateCluster() {
         <h2 style={{textAlign: 'center'}}>You have successfully created a cluster</h2>
         <p style={{textAlign: 'center'}}>Find your cluster and invite other validators to join</p>
         <Link href="exploreClusters" style={{textDecoration: 'none', color: 'white'}}>
-          <Button style={{display: 'block', margin: 'auto'}}>Explore clusters</Button>
+          <Button color='#EEAD36' style={{display: 'block', margin: 'auto'}}>Explore clusters</Button>
         </Link>
       </Modal>
-
+      
       <FooterCentered />
+      </Group>
     </>
   );
 }

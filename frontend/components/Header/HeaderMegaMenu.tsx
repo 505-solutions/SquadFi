@@ -18,6 +18,7 @@ import {
   ScrollArea,
   rem,
   useMantineTheme,
+  Image
 } from '@mantine/core';
 import { IconPhoto, IconDownload, IconMessageShare } from '@tabler/icons-react';
 import { MantineLogo } from '@mantine/ds';
@@ -37,6 +38,9 @@ import { globalPropsContext } from '@/contexts/globalContext';
 import { useWeb3ModalAccount } from '@web3modal/ethers5/react'
 import { useDisclosure } from '@mantine/hooks';
 import MessagingDrawer from '../MessagingDrawer';
+import NextImage from 'next/image';
+import logo from "../../public/logo.png";
+import Link from 'next/link';
 
 
 export function HeaderMegaMenu() {
@@ -48,12 +52,22 @@ export function HeaderMegaMenu() {
     const [messagesOpened, setMessagesOpened] = useState(false);
 
   return (
-    <Box pb={120}>
+    <Box>
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
-          <MantineLogo size={30} />
+        <Link
+          href='/'
+        >
+          <Image
+            radius="md"
+            component={NextImage}
+            alt='Cats'
+            src={logo}
+            style={{width: '70px', height: 'auto', marginTop: '25px', marginLeft: '10px'}}
+          />
+        </Link>
 
-          <Group h="100%" gap={0} visibleFrom="sm">
+          {/* <Group h="100%" gap={0} visibleFrom="sm">
             <a href="#" className={classes.link}>
               Home
             </a>
@@ -104,18 +118,21 @@ export function HeaderMegaMenu() {
             <a href="#" className={classes.link}>
               Academy
             </a>
-          </Group>
+          </Group> */}
 
           <Group visibleFrom="sm">
             { address ?
               <>
               <Button variant='light' onClick={() => setMessagesOpened(true)} rightSection={<IconMessageShare size={14} />}>Open web3inbox</Button>
-              <Button color="green" onClick={() => open()}>
+              <Button color="green" onClick={() => open()}/>
+              <Button variant="gradient" gradient={{ from: '#EEAD36', to: '#E97333', deg: 90 }} onClick={() => open()}>
                 {`${address.substring(0, 7)}...${address.substring(address.length - 5, address.length)}`}
               </Button>
               </>
               :
-              <Button onClick={() => open()}>Connect wallet</Button>
+              <Button variant="gradient" gradient={{ from: '#EEAD36', to: '#E97333', deg: 90 }} onClick={() => open()}>
+                Connect wallet
+              </Button>
             }
 
           </Group>
@@ -133,7 +150,7 @@ export function HeaderMegaMenu() {
         hiddenFrom="sm"
         zIndex={1000000}
       >
-        <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
+        <ScrollArea h={'auto'} mx="-md">
           <Divider my="sm" />
 
           <a href="#" className={classes.link}>

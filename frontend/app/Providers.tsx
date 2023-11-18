@@ -1,7 +1,7 @@
 'use client';
 
 import { MetaMaskProvider } from '@metamask/sdk-react';
-import { MantineProvider } from '@mantine/core';
+import { MantineProvider, createTheme } from '@mantine/core';
 import { ReactNode } from 'react';
 import { GlobalPropsProvider } from '@/contexts/globalContext';
 import { Web3ModalProvider } from "./context/Web3Modal";
