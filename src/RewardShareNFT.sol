@@ -74,29 +74,13 @@ contract RewardShareNFT is ERC1155URIStorage, Ownable {
         s_validatorSplitFeeAddresses[validatorId] = feeRecipients;
         s_validatorSplitFeePercentages[validatorId] = feePercentages;
         newSpliterAddress = address(123456789);
-        // newSpliterAddress = ISplitMain(spliterAddress).createSplit(
-        //     feeRecipients,
-        //     feePercentages,
-        //     0,
-        //     address(this)
-        // );
+        newSpliterAddress = ISplitMain(spliterAddress).createSplit(
+            feeRecipients,
+            feePercentages,
+            0,
+            address(this)
+        );
         s_feeSplitter[validatorId] = newSpliterAddress;
-
-        // console.log("newSpliterAddress: %s", s_feeSplitter[validatorId]);
-        // console.log(
-        //     "s_validatorSplitFeeAddresses: %s",
-        //     s_validatorSplitFeeAddresses[validatorId][0],
-        //     s_validatorSplitFeeAddresses[validatorId][3]
-        // );
-        // console.log(
-        //     "s_validatorSplitFeePercentages: %s",
-        //     s_validatorSplitFeePercentages[validatorId][0],
-        //     s_validatorSplitFeePercentages[validatorId][0]
-        // );
-        // console.log(
-        //     "newSpliterAddress: %s",
-        //     s_userFeeShares[feeRecipients[0]][25][0]
-        // );
     }
 
     function safeTransferFrom(
@@ -191,12 +175,12 @@ contract RewardShareNFT is ERC1155URIStorage, Ownable {
         removeToStorageArray(s_userFeeShares[from][id], validatorId);
         addToStorageArray(s_userFeeShares[to][id], validatorId);
 
-        // ISplitMain(spliterAddress).updateSplit(
-        //     validatorSplitAddr,
-        //     feeAddresses,
-        //     feePercentages,
-        //     0
-        // );
+        ISplitMain(spliterAddress).updateSplit(
+            validatorSplitAddr,
+            feeAddresses,
+            feePercentages,
+            0
+        );
     }
 
     function splitFeeDenominations(

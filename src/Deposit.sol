@@ -77,7 +77,9 @@ contract SquadFiDeposits is Ownable {
     function contributeToValidator(uint256 validatorId) external payable {
         uint256 totalContributions = s_validatorTotalContributions[validatorId];
 
-        console.log("totalContributions: %s", totalContributions);
+        if (totalContributions >= 32 ether) {
+            return;
+        }
 
         // TODO: Verify the msg.value is in denomination of (1%)
         // TODO: This should account for the validators taking a fee
@@ -147,10 +149,12 @@ contract SquadFiDeposits is Ownable {
         uint256 validatorId,
         address[] calldata feeAddresses,
         uint32[] calldata percentAllocations,
-        address signer // ideally a gnosis safe multisig
-    ) external // uint256 depositType
-    {
-        // TODO: Get all the signers from the gnosis multisig
+        address signer, // ideally a gnosis safe multisig
+        bytes32 subdomainLabel // uint256 depositType
+    ) external {
+        if (s_registeredValidators[validatorId].signer != address(0)) {
+            return;
+        }
 
         require(feeAddresses.length >= 1, "must have at least one fee address");
         require(
@@ -158,8 +162,16 @@ contract SquadFiDeposits is Ownable {
             "must have the same number of fee addresses and percent allocations"
         );
 
+        require(signer != address(0), "signer cant be the zero address");
+
         address owr = OptimisticWithdrawalRecipientFactory(owrFactory)
-            .createOWRecipient(address(this), address(this), 32 ether);
+            .createOWRecipient(
+                address(this),
+                address(this),
+                32 ether,
+                signer,
+                subdomainLabel
+            );
 
         s_validatorOwr[validatorId] = owr;
 
@@ -184,6 +196,9 @@ contract SquadFiDeposits is Ownable {
         bytes calldata signature,
         bytes32 deposit_data_root // uint256 depositType
     ) external {
+        if (s_isValidatorActive[validatorId] == true) {
+            return;
+        }
         require(
             s_isValidatorActive[validatorId] == false,
             "validator already active"
@@ -218,10 +233,7 @@ contract SquadFiDeposits is Ownable {
             newSpliterAddress
         );
 
-        // TODO: require withdrawal_credentials last 32 bytes ==  owrAddress
-
-        // TODO: ACTIVATE THE VALIDATOR  BY SENDING IT TO ROCKETPOOL
-
+        // // TODO Activate validator by sending it to rocketpool or beacon chain
         // if (depositType == ROCKETPOOL) {
         //     IRocketNodeDeposit(rocketNodeManager).deposit(
         //         _bondAmount,
