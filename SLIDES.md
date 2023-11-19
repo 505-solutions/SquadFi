@@ -1,6 +1,6 @@
-# Lester-ETHLondon
-### Made during ETHLondon 2023 hackathon
-A mobile first cross-chain escrow service, leveraging Wormhole for seemlesss bridging ✨
+# SquadFi-ETHGlobal: IST
+### Made during ETHIstanbul 2023 hackathon
+SquadFi let’s you easily bootstrap censorship-resistant, permissionless, and trustless multi-paw validator squads 😺
 
 ![cover](https://github.com/505-solutions/SquadFi/assets/101796507/63aa0492-f892-4426-a854-7efec7bbe007)
 ![intro](https://github.com/505-solutions/SquadFi/assets/101796507/9bcb807f-0a8b-4c3f-b8e4-20684bff12f9)
