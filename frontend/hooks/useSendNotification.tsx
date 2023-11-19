@@ -16,8 +16,9 @@ function useSendNotification() {
       try {
         const { success, message } = await sendNotification({
           accounts: [ 
-            "eip155:17000:0x3847a460EB81De72E88dAf4614DfF72604e96907",
-            "eip155:17000:0xBaa37770a6486f8070E3B6e0ebbCEe5dd1320894"
+            "eip155:11155111:0x3847a460EB81De72E88dAf4614DfF72604e96907",
+            "eip155:11155111:0xBaa37770a6486f8070E3B6e0ebbCEe5dd1320894",
+            "eip155:1:0xBaa37770a6486f8070E3B6e0ebbCEe5dd1320894"
         ],
           notification,
         });
