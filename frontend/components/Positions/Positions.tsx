@@ -9,7 +9,7 @@ import NFT25 from '../../public/NFT_25.png';
 import NFT50 from '../../public/NFT_50.png';
 import NFT100 from '../../public/NFT_100.png';
 import { useDisclosure } from "@mantine/hooks"
-import { IconNumber, IconTransfer } from "@tabler/icons-react"
+import { IconAddressBook, IconNumber } from "@tabler/icons-react"
 
 const POSITION_NFT_ADDRESS = "0x3af4FF5D422f28737466c8Ca7084FC8A69A6cEbf"
 
@@ -83,7 +83,7 @@ export function Positions() {
                 <TextInput
                     placeholder="Address"
                     inputWrapperOrder={['label', 'error', 'input', 'description']}
-                    leftSection={<IconNumber size={16} />}
+                    leftSection={<IconAddressBook size={16} />}
                     size='xl'
                     variant='unstyled'
                     style={{
