@@ -1,5 +1,5 @@
 import React, {useEffect, useCallback} from 'react';
-import { Button, Group, Tooltip, Card, Text, Avatar, Stack, Space, TextInput, Divider } from '@mantine/core';
+import { Button, Group, Tooltip, Card, Text, Avatar, Stack, Space, TextInput, Divider, NumberInput } from '@mantine/core';
 import {
     useManageSubscription,
     useSubscription,
@@ -21,8 +21,9 @@ const appDomain = process.env.NEXT_PUBLIC_APP_DOMAIN as string;
 export default function MessagingDrawer() {
     const form = useForm({
         initialValues: {
-          title: 'Huston, we have a problem!',
-          body: '... and we need to fix it',
+          title: 'Huston, we have a problem 🚨',
+          body: '... and we need to fix it!',
+          squadId: null
         },
       });      
     const isW3iInitialized = useInitWeb3InboxClient({
@@ -104,6 +105,7 @@ export default function MessagingDrawer() {
       
 
     return (<>
+    
     <Group >
 
     {isSubscribed ? (
@@ -123,15 +125,23 @@ export default function MessagingDrawer() {
                     placeholder="...then have something important to say"
                     {...form.getInputProps('body')}
                 />
-                <Button mt="sm" type='submit' fullWidth loading={isSending}>Broadcast a message to your Squad</Button>
+                <NumberInput
+                    mt="sm"
+                    label='Squad ID (optional)'
+                    rightSectionPointerEvents="none"
+                    placeholder="add if sending to another Squad"
+                    {...form.getInputProps('squadId')}
+                />
+                <Button mt="sm" type='submit' fullWidth loading={isSending}>Broadcast message to your Squad</Button>
             </form>
-
 
             <Button fullWidth 
                     variant='light' 
                     onClick={handleUnsubscribe}
                     loading={isUnsubscribing}
+                    color='gray'
                     loaderProps={{children: "Unsubscribing..."}}>Unsubscribe from messages</Button>
+
           </>
         ) : (
           <Tooltip
