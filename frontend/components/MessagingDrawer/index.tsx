@@ -1,5 +1,5 @@
 import React, {useEffect, useCallback} from 'react';
-import { Button, Group, Tooltip, Card, Text, Avatar, Stack, Space, TextInput, Form } from '@mantine/core';
+import { Button, Group, Tooltip, Card, Text, Avatar, Stack, Space, TextInput, Divider } from '@mantine/core';
 import {
     useManageSubscription,
     useSubscription,
@@ -21,8 +21,8 @@ const appDomain = process.env.NEXT_PUBLIC_APP_DOMAIN as string;
 export default function MessagingDrawer() {
     const form = useForm({
         initialValues: {
-          title: '',
-          body: '',
+          title: 'Huston, we have a problem!',
+          body: '... and we need to fix it',
         },
       });      
     const isW3iInitialized = useInitWeb3InboxClient({
@@ -167,6 +167,7 @@ export default function MessagingDrawer() {
         <li>{isUnsubscribing? 'is un-subscribing': 'not'}</li>
     </ol>
     <Space></Space>
+    <Divider my="sm" />
     <Stack mt='md' >
     {messages.slice(0).reverse().map((m, index) => {
             return (<Card shadow="sm" padding="xs" radius="sm">
