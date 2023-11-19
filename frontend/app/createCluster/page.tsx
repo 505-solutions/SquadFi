@@ -7,10 +7,30 @@ import { useDisclosure } from '@mantine/hooks';
 import { IconAddressBook, IconCheck, IconCircleCheck, IconUser } from '@tabler/icons-react';
 import { IconBlockquote, IconPlus, IconUserBolt, IconUserSquare, IconUsersGroup } from '@tabler/icons-react';
 import Link from 'next/link';
+import { ethers } from 'ethers';
+import contractData from "../../blockchain/SquadFiDeposits.json";
+import { useWeb3ModalAccount, useWeb3ModalSigner } from '@web3modal/ethers5/react';
+
+
+const POSITION_NFT_ADDRESS = "0xFA8166634569537ea716b7350383Ab262335994E";
 
 
 export default function CreateCluster() {
   const [opened, { open, close }] = useDisclosure(false);
+  const { signer } = useWeb3ModalSigner();
+  const { address } = useWeb3ModalAccount();
+
+
+  async function createClusterInternal() {
+    try {
+      const contract = new ethers.Contract(POSITION_NFT_ADDRESS, contractData.abi, signer);
+      await contract.contributeToValidator(0);
+    }
+    catch (e) {
+        console.log(e);
+    }
+    open();
+  }
 
   return (
     <>
@@ -87,7 +107,7 @@ export default function CreateCluster() {
           gradient={{ from: '#EEAD36', to: '#E97333', deg: 90 }}
           size="xl"
           leftSection={<IconCheck />}
-          onClick={open}
+          onClick={() => {createClusterInternal();}}
         >
           Create cluster
         </Button>

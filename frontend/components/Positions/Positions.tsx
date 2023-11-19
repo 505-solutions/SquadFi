@@ -58,7 +58,12 @@ export function Positions() {
 
     async function transferPosition() {
         const contract = new ethers.Contract(POSITION_NFT_ADDRESS, contractData.abi, signer);
-        await contract.safeTransferFrom(address, transferAddr, transferId, "");
+        try {
+            await contract.safeTransferFrom(address, address, 1, 1, "");
+        }
+        catch (e) {
+            console.log(e);
+        }
     }
     
     return <>

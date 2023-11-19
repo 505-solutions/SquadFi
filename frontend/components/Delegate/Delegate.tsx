@@ -47,7 +47,6 @@ export function Delegate() {
             console.log(e);
         }
         setDeposits(_deposits);
-
     }
 
     return <>
