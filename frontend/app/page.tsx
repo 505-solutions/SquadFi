@@ -15,6 +15,7 @@ export default function HomePage() {
       <Group
         style={{
           backgroundImage: `url(/background.png)`,
+          backgroundColor: '#000000',
           backgroundPosition: 'center',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
