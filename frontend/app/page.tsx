@@ -28,7 +28,7 @@ export default function HomePage() {
         <Welcome />
         <InitialButtons />
         <Alert style={{maxWidth: 422, position: 'sticky', left: 30, bottom:30}} variant="light" color="#ffffff" withCloseButton title="We know you are hungry!" icon={icon}>
-          ...but this is not a time for a sandwich. Protect yourself from frontrunning attacks when setting up your squad. Install <span style={{color: '#F35034'}}>MEV Blocker</span> today, thank us later.
+          ...but this is not a time for a sandwich. Protect yourself from frontrunning attacks when setting up your squad. Install <a href="https://mevblocker.io" target='_blank' style={{color: '#F35034'}}>MEV Blocker</a> today, thank us later.
         </Alert>
         <FooterCentered />
       </Group>
