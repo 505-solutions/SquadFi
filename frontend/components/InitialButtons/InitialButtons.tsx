@@ -6,12 +6,13 @@ import Link from 'next/link';
 export function InitialButtons() {
     return (
         <>
-        <Group style={{ marginTop: '30px', justifyContent: 'center', columnGap: '100px' }}>
+        <Group style={{ marginTop: '30px', justifyContent: 'center', columnGap: '50px' }}>
             <Link
               style={{ textDecoration: 'none', color: 'white' }}
               href="/createCluster"
             >
                 <Button
+                  style={{width: 250}}
                   variant="gradient"
                   gradient={{ from: '#EEAD36', to: '#E97333', deg: 90 }}
                   size="xl"
@@ -25,6 +26,7 @@ export function InitialButtons() {
               href="/exploreClusters"
             >
                 <Button
+                  style={{width: 250}}
                   variant="gradient"
                   gradient={{ from: '#EEAD36', to: '#E97333', deg: 90 }}
                   size="xl"
@@ -33,14 +35,28 @@ export function InitialButtons() {
                 </Button>
             </Link>
         </Group>
-        <Group style={{justifyContent: 'center', marginTop: '30px'}}>
+        <Group style={{justifyContent: 'center', marginTop: '30px', columnGap: '50px' }}>
+          <Link
+            style={{ textDecoration: 'none', color: 'white' }}
+            href="/activateCluster"
+          >
+            <Button
+              style={{width: 250}}
+              variant="gradient"
+              gradient={{ from: '#EEAD36', to: '#E97333', deg: 90 }}
+              size="xl"
+            >
+              Activate cluster
+            </Button>
+          </Link>
           <Link
             style={{ textDecoration: 'none', color: 'white' }}
             href="/manageAssets"
           >
             <Button
+              style={{width: 250}}
               variant="gradient"
-              gradient={{ from: 'gold', to: 'orange', deg: 90 }}
+              gradient={{ from: '#EEAD36', to: '#E97333', deg: 90 }}
               size="xl"
             >
               Manage Assets

@@ -12,6 +12,7 @@ import { Button } from '@mantine/core';
 import { useWeb3ModalSigner, useWeb3ModalAccount } from '@web3modal/ethers5/react'
 import type { Signer } from 'ethers'
 import depositAbi from "../../../out/Deposit.sol/SquadFiDeposits.json";
+import { useForm } from '@mantine/form';
 
 interface EthClient {
   isConnected: boolean;
