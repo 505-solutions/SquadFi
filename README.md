@@ -2,7 +2,7 @@
 ### Made during ETHIstanbul 2023 hackathon
 SquadFi let’s you easily bootstrap censorship-resistant, permissionless, and trustless multi-paw validator squads 😺
 
-![banner (3)](https://github.com/505-solutions/SquadFi/assets/101796507/0f745bdd-14f2-4efd-b9da-d58281439c71)
+![banner (3)](https://github.com/505-solutions/SquadFi/assets/101796507/3f487da5-5703-43b9-a12d-4bdb754fd79f)
 
 ## Description
 SquadFi is inspired by the need of decentralization in the validation ecosystem of the Ethereum Network. Our browser-based frontend allows users to create a squad (validator cluster) or join one. Validator Squads aim to enhance the decentralization, security, and fault tolerance of Ethereum network while optimizing the processes involved.
