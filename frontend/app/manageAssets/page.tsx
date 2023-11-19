@@ -1,5 +1,6 @@
 'use client';
 
+import { Delegate } from '@/components/Delegate/Delegate';
 import { FooterCentered } from '@/components/Footer/FooterCentered';
 import { HeaderMegaMenu } from '@/components/Header/HeaderMegaMenu';
 import { Positions } from '@/components/Positions/Positions';
@@ -25,6 +26,7 @@ export default function HomePage() {
       >
       <HeaderMegaMenu />
       <h1 style={{margin: 'auto', textAlign: 'center'}}>Delegate</h1>
+      <Delegate />
       <h1 style={{margin: 'auto', textAlign: 'center'}}>Manage your positions</h1>
       <Positions />
       <FooterCentered />
