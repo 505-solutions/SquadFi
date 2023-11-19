@@ -7,7 +7,7 @@ const projectId = '00bc088c4562cbad8696764bfe08cd24'
 
 // 2. Set chains
 const sepolia = {
-  chainId: 17000,
+  chainId: 11155111,
   name: 'Holesky',
   currency: 'ETH',
   explorerUrl: 'https://holesky.etherscan.io',
