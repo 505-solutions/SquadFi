@@ -9,13 +9,17 @@ import {SquadFiDeposits} from "../src/Deposit.sol";
 import {RewardShareNFT} from "../src/RewardShareNFT.sol";
 import {OptimisticWithdrawalRecipientFactory} from "../src/obolOwr/OwrFactory.sol";
 
-contract CounterTest is Test {
+contract SquadFiTest is Test {
     SquadFiDeposits public depositContract;
     RewardShareNFT public nftManagerContract;
     OptimisticWithdrawalRecipientFactory public owrFactoryContract;
 
     address splitterContractAddress =
         address(0x2ed6c4B5dA6378c7897AC67Ba9e43102Feb694EE); // holesky contract address
+
+    address ensRegistry = address(0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e);
+    address reverseRegistar =
+        address(0xA0a1AbcDAe1a2a4A2EF8e9113Ff0e02DD81DC0C6);
 
     address owner = address(8953626958234137847422389523978938749873);
 
@@ -44,9 +48,14 @@ contract CounterTest is Test {
             splitterContractAddress,
             address(depositContract)
         );
+
         owrFactoryContract = new OptimisticWithdrawalRecipientFactory(
             owner,
-            address(depositContract)
+            address(depositContract),
+            "SquadFi",
+            address(0),
+            address(0),
+            address(0)
         );
 
         depositContract.setOwrFactory(address(owrFactoryContract));
@@ -71,7 +80,8 @@ contract CounterTest is Test {
             validatorId,
             feeAddresses,
             percentAllocations,
-            owner // ? gnosis multisig
+            owner, // ? gnosis multisig
+            "cluster_name"
         );
     }
 

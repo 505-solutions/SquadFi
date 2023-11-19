@@ -1,0 +1,39 @@
+
+
+
+forge create --rpc-url https://rpc-sepolia.rockx.com --private-key e430797523a3a7dabdbb2623b8eee0ca1343ffa5684c59ceedcff0f10a3e957b \
+  src/Deposit.sol:SquadFiDeposits --constructor-args 0xaCEdF8742eDC7d923e1e6462852cCE136ee9Fb56
+
+
+DEPOSIT CONTRACT:
+Deployer: 0xaCEdF8742eDC7d923e1e6462852cCE136ee9Fb56
+Deployed to: 0x013bbC069FdD066009e0701Fe9969d4dDf3c7e4E
+Transaction hash: 0x21b031f06dec6aa0907a59600e4726a8030d4b9278fa542c5f8fc0e8c1f0a942
+
+
+forge create --rpc-url https://rpc-sepolia.rockx.com --private-key e430797523a3a7dabdbb2623b8eee0ca1343ffa5684c59ceedcff0f10a3e957b \
+  src/RewardShareNFT.sol:RewardShareNFT --constructor-args 0xaCEdF8742eDC7d923e1e6462852cCE136ee9Fb56 0xaCEdF8742eDC7d923e1e6462852cCE136ee9Fb56 0x013bbC069FdD066009e0701Fe9969d4dDf3c7e4E
+
+NFT MANAGER:
+Deployer: 0xaCEdF8742eDC7d923e1e6462852cCE136ee9Fb56
+Deployed to: 0xB4BDAd64dE1a18894cb0a8C4FA2bE41B330d378C
+Transaction hash: 0xedec86b9a312c4b8842dbc18063c42ca48e0ec2086f82e79a73838d6e9ab5317
+
+
+
+forge create --rpc-url https://rpc-sepolia.rockx.com --private-key e430797523a3a7dabdbb2623b8eee0ca1343ffa5684c59ceedcff0f10a3e957b \
+  src/obolOwr/OwrFactory.sol:OptimisticWithdrawalRecipientFactory --constructor-args 0xaCEdF8742eDC7d923e1e6462852cCE136ee9Fb56 0x013bbC069FdD066009e0701Fe9969d4dDf3c7e4E squadfi 0x0000000000000000000000000000000000000000 0x0000000000000000000000000000000000000000 0x0000000000000000000000000000000000000000
+
+OWR FACTORY:
+Deployer: 0xaCEdF8742eDC7d923e1e6462852cCE136ee9Fb56
+Deployed to: 0xF1ec5F7931fDDf8D1613182459305634A99eb1AF
+Transaction hash: 0x9cabc0f9c5abf87f5b00ec08f50feef59dc312a3ebf35a332f556cd68591de79
+
+depositContract.setOwrFactory(address(owrFactoryContract));
+depositContract.setNftManager(address(nftManagerContract));
+
+cast send --rpc-url https://rpc-sepolia.rockx.com --private-key e430797523a3a7dabdbb2623b8eee0ca1343ffa5684c59ceedcff0f10a3e957b 0x013bbC069FdD066009e0701Fe9969d4dDf3c7e4E "setNftManager(address)" 0xB4BDAd64dE1a18894cb0a8C4FA2bE41B330d378C
+cast send --rpc-url https://rpc-sepolia.rockx.com --private-key e430797523a3a7dabdbb2623b8eee0ca1343ffa5684c59ceedcff0f10a3e957b 0x013bbC069FdD066009e0701Fe9969d4dDf3c7e4E "setOwrFactory(address)" 0xF1ec5F7931fDDf8D1613182459305634A99eb1AF
+
+
+
