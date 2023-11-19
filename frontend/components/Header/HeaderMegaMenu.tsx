@@ -18,9 +18,9 @@ import {
   ScrollArea,
   rem,
   useMantineTheme,
-  Image
+  Image,
 } from '@mantine/core';
-import { IconPhoto, IconDownload, IconMessageShare } from '@tabler/icons-react';
+import { IconPhoto, IconDownload, IconMessageShare, IconShieldLock } from '@tabler/icons-react';
 import { MantineLogo } from '@mantine/ds';
 import {
   IconNotification,
@@ -121,9 +121,21 @@ export function HeaderMegaMenu() {
           </Group> */}
 
           <Group visibleFrom="sm">
-            { address ?
+
+          { address ?
               <>
               <Button variant='light' color='#EEAD36' onClick={() => setMessagesOpened(true)} rightSection={<IconMessageShare size={14} />}>Open web3inbox</Button>
+              </>
+              :
+              <></>
+            }
+            <Link href='https://mevblocker.io' target='_blank'>            <Button rightSection={<IconShieldLock size={14}/>} variant="gradient" gradient={{ from: '#F35034', to: '#F35034', deg: 90 }}>
+                Get Protected
+              </Button>
+</Link>
+
+            { address ?
+              <>
               <Button variant="gradient" gradient={{ from: '#EEAD36', to: '#E97333', deg: 90 }} onClick={() => open()}>
                 {`${address.substring(0, 7)}...${address.substring(address.length - 5, address.length)}`}
               </Button>

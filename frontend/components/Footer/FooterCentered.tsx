@@ -1,6 +1,6 @@
 'use client';
 
-import { Anchor, Group, ActionIcon, rem, Image } from '@mantine/core';
+import { Anchor, Group, ActionIcon, rem, Image, Alert } from '@mantine/core';
 import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
 import classes from './FooterCentered.module.css';
 import NextImage from 'next/image';
@@ -12,6 +12,7 @@ const links = [
 ];
 
 export function FooterCentered() {
+
   const items = links.map((link) => (
     <Anchor
       c="dimmed"
@@ -29,6 +30,7 @@ export function FooterCentered() {
     <div className={classes.footer}>
       <div className={classes.inner}>
         <Group style={{flexDirection: 'column'}}>
+
           <p style={{margin: 0}}>Powered by:</p>
           <Image
             radius="md"
