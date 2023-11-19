@@ -9,9 +9,9 @@ export function Welcome() {
   return (
     <>
       <Title className={classes.title} ta="center" mt={50}>
-        Welcome to{' '}
+        Every pawprint {' '}
         <Text inherit variant="gradient" component="span" gradient={{ from: '#EEAD36', to: '#E97333' }}>
-          SquadFi
+          echoes
         </Text>
       </Title>
       <Title style={{
@@ -25,8 +25,7 @@ export function Welcome() {
         margin: 'auto',
         marginBottom: '30px',
       }}>
-        SquadFi lets you easily bootstrap censorship-resistant, and trustless multi-paw validator squads. Preserve decentralization and resiliency of the Ethereum network.
-      </Title>
+        <b>SquadFi</b> let’s you easily bootstrap censorship-resistant, permissionless, and trustless multi-paw validator squads. Block MEV, preserve decentralization, and resiliency of the Ethereum network.      </Title>
       <Image
         radius="md"
         component={NextImage}
