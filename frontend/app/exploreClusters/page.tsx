@@ -155,6 +155,17 @@ export default function ExploreClusters() {
                 target="_blank"
               >
                 <Button color="#E2D04B" style={{color: 'black'}}>View cluster dashboard</Button>
+                <Link
+            href="/activateCluster"
+            color="#E2D04B"
+          >
+            <Button
+              style={{color: 'black', marginLeft: 15}}
+              color="#E2D04B"
+            >
+              Activate cluster
+            </Button>
+          </Link>
               </Link>
             </Group>
         </Modal>

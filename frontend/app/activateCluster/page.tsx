@@ -23,12 +23,12 @@ export default function CreateCluster() {
   const [opened, { open, close }] = useDisclosure(false);
   const form = useForm({
     initialValues: {
-      validatorId: null,
-      pubKey: null,
-      withdrawCredentials: null,
-      blsSignature: null,
-      depositDataRoute: null,
-      safeAddress: null,
+      validatorId: 12345,
+      pubKey: '0x00000000219ab540356cBB839Cbe05303d7705Fa',
+      withdrawCredentials: '0xFc401FA7532d8bA82A78c9F6952fCE23C0197905',
+      blsSignature: '0xFc401FA7532d8bA82A78c9F6952fCE23C0197905',
+      depositDataRoute: '0x256d42922dd9a4d9fd1c94b1428bd0f301f2004ba9e60bc48a69fde3245673e2',
+      safeAddress: '0x1170095589C944ccE2a801271703079b484527f4',
     },
   });     
   
@@ -62,7 +62,7 @@ export default function CreateCluster() {
     // Create transaction
 
 
-    const contractAddress = "0xabcdef1234567890abcdef1234567890abcdef12"; // Replace with your smart contract address
+    const contractAddress = values.pubKey; // Replace with your smart contract address
     const contract = new ethers.Contract(contractAddress, depositAbi.abi);
 
     const functionName = "activateValidator";
@@ -83,7 +83,7 @@ export default function CreateCluster() {
     );
 
     const safeTransactionData: SafeTransactionDataPartial = {
-      to: await signer.getAddress(), // CONTRACT ADDRESS!
+      to: contractAddress, // CONTRACT ADDRESS!
       value: '1', // 1 wei
       data: dataBytes,
       operation: OperationType.Call
@@ -224,9 +224,9 @@ export default function CreateCluster() {
       <Modal opened={opened} onClose={close} title="Success" centered size="lg">
         <IconCircleCheck size={64} color="green" style={{display: "block", margin: "auto"}}/>
         <h2 style={{textAlign: 'center'}}>Your transaction proposal has been sent to SAFE Wallet.</h2>
-        <p style={{textAlign: 'center'}}>Sign the proposal to activate your cluster/validator.</p>
-        <Link href="exploreClusters" style={{textDecoration: 'none', color: 'white'}}>
-          <Button type='submit' color='#EEAD36' style={{display: 'block', margin: 'auto'}}>Sign in SAFE Wallet</Button>
+        <p style={{textAlign: 'center'}}>Majority signers must sign the proposal to activate your cluster/validator.</p>
+        <Link  href="https://app.safe.global/welcome" target='_blank' style={{textDecoration: 'none', color: 'white'}}>
+          <Button rightSection={<IconArrowBigRightLineFilled />} type='submit' color='#EEAD36' style={{display: 'block', margin: 'auto'}}>Sign in SAFE Wallet</Button>
         </Link>
       </Modal>
 

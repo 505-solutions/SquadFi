@@ -9,8 +9,8 @@ const prometheusURL = 'http://localhost:9090'; // Replace with your Prometheus U
 const projectId = '00bc088c4562cbad8696764bfe08cd24'; // Replace with your project ID
 const apiSecret = '357cb08b-be22-44e2-99e4-b53336a0aebc';
 const cluster_owner = [
-  'eip155:17000:0x3847a460EB81De72E88dAf4614DfF72604e96907',
-  'eip155:17000:0xBaa37770a6486f8070E3B6e0ebbCEe5dd1320894',
+  'eip155:11155111:0x3847a460EB81De72E88dAf4614DfF72604e96907',
+  'eip155:11155111:0xBaa37770a6486f8070E3B6e0ebbCEe5dd1320894',
   'eip155:1:0xBaa37770a6486f8070E3B6e0ebbCEe5dd1320894']; // Replace with your cluster owner
 const notification_types = [
   '589a82cc-e31c-4923-9711-b87a6426b11e', // alert

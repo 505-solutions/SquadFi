@@ -36,19 +36,7 @@ export function InitialButtons() {
             </Link>
         </Group>
         <Group style={{justifyContent: 'center', marginTop: '30px', columnGap: '50px' }}>
-          <Link
-            style={{ textDecoration: 'none', color: 'white' }}
-            href="/activateCluster"
-          >
-            <Button
-              style={{width: 250}}
-              variant="gradient"
-              gradient={{ from: '#EEAD36', to: '#E97333', deg: 90 }}
-              size="xl"
-            >
-              Activate cluster
-            </Button>
-          </Link>
+
           <Link
             style={{ textDecoration: 'none', color: 'white' }}
             href="/manageAssets"
