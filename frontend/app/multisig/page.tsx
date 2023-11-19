@@ -9,9 +9,9 @@ import { SafeTransactionDataPartial, OperationType } from '@safe-global/safe-cor
 import { FooterCentered } from '@/components/Footer/FooterCentered';
 import { HeaderMegaMenu } from '@/components/Header/HeaderMegaMenu';
 import { Button } from '@mantine/core';
-import { useSDK } from '@metamask/sdk-react';
 import { useWeb3ModalSigner, useWeb3ModalAccount } from '@web3modal/ethers5/react'
 import type { Signer } from 'ethers'
+import depositAbi from "../../../out/Deposit.sol/SquadFiDeposits.json";
 
 interface EthClient {
   isConnected: boolean;
@@ -48,10 +48,30 @@ export default function HomePage() {
     })
     
     // Create transaction
+
+
+    const contractAddress = "0xabcdef1234567890abcdef1234567890abcdef12"; // Replace with your smart contract address
+    const contract = new ethers.Contract(contractAddress, depositAbi.abi);
+
+    const functionName = "activateValidator";
+    const functionParams = [
+      12345,
+      "0x00000000219ab540356cBB839Cbe05303d7705Fa",
+      "0x00000000219ab540356cBB839Cbe05303d7705Fa",
+      "0x00000000219ab540356cBB839Cbe05303d7705Fa",
+      "0x256d42922dd9a4d9fd1c94b1428bd0f301f2004ba9e60bc48a69fde3245673e2",
+    ];
+
+    // Encode the function call data
+    const dataBytes = contract.interface.encodeFunctionData(
+      functionName,
+      functionParams
+    );
+
     const safeTransactionData: SafeTransactionDataPartial = {
       to: await signer.getAddress(),
-      value: '1000000', // 1 wei
-      data: '0x',
+      value: '1', // 1 wei
+      data: dataBytes,
       operation: OperationType.Call
     }
     
