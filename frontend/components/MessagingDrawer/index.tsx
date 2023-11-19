@@ -1,5 +1,5 @@
 import React, {useEffect, useCallback} from 'react';
-import { Button, Group, Tooltip, Card, Text, Avatar, Stack, Space } from '@mantine/core';
+import { Button, Group, Tooltip, Card, Text, Avatar, Stack, Space, TextInput, Form } from '@mantine/core';
 import {
     useManageSubscription,
     useSubscription,
@@ -12,12 +12,19 @@ import {
   import type { Signer } from 'ethers'
   import useSendNotification from "../../hooks/useSendNotification";
 import { notifications } from '@mantine/notifications';
+import { useForm } from '@mantine/form';
 
 const projectId = process.env.NEXT_PUBLIC_PROJECT_ID as string;
 const appDomain = process.env.NEXT_PUBLIC_APP_DOMAIN as string;
 
 
 export default function MessagingDrawer() {
+    const form = useForm({
+        initialValues: {
+          title: '',
+          body: '',
+        },
+      });      
     const isW3iInitialized = useInitWeb3InboxClient({
         projectId,
         domain: appDomain,
@@ -74,11 +81,13 @@ export default function MessagingDrawer() {
         alert('unsubscribed')
       }    
     
-      const handleTestNotification = async () => {
+      const handleTestNotification = async (values: any) => {
+
+
         if (isSubscribed) {      
           handleSendNotification({
-            title: "GM Hacker",
-            body: "Hack it until you make it!",
+            title: values.title,
+            body: values.body,
             icon: `https://imagedelivery.net/_aTEfDRm7z3tKgu9JhfeKA/d1ec9032-54e5-4f1c-f67a-51654f6f7900/md`,
             url: window.location.origin,
         // ID retrieved from explorer api - Copy your notification type from WalletConnect Cloud and replace the default value below
@@ -99,7 +108,25 @@ export default function MessagingDrawer() {
 
     {isSubscribed ? (
         <>
-            <Button fullWidth onClick={handleTestNotification} loading={isSending}>Broadcast a message to your Squad</Button>
+            <form style={{width: '100%'}} onSubmit={form.onSubmit((values) => handleTestNotification(values))}>
+                <TextInput
+                    mt="sm"
+                    label='Title'
+                    leftSectionPointerEvents="none"
+                    placeholder="Pick an important title..."
+                    {...form.getInputProps('title')}
+                />
+                <TextInput
+                    mt="sm"
+                    label='Message'
+                    rightSectionPointerEvents="none"
+                    placeholder="...then have something important to say"
+                    {...form.getInputProps('body')}
+                />
+                <Button mt="sm" type='submit' fullWidth loading={isSending}>Broadcast a message to your Squad</Button>
+            </form>
+
+
             <Button fullWidth 
                     variant='light' 
                     onClick={handleUnsubscribe}
