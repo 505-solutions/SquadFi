@@ -11,7 +11,7 @@ import NFT100 from '../../public/NFT_100.png';
 import { useDisclosure } from "@mantine/hooks"
 import { IconAddressBook, IconNumber } from "@tabler/icons-react"
 
-const POSITION_NFT_ADDRESS = "0x3af4FF5D422f28737466c8Ca7084FC8A69A6cEbf"
+const POSITION_NFT_ADDRESS = "0x147E1676e775Aae66ba23D403b1A058efefA027D"
 
 
 const possibleStakes = [1, 25, 50, 100];
@@ -36,7 +36,7 @@ export function Positions() {
             try {
                 const contract = new ethers.Contract(POSITION_NFT_ADDRESS, contractData.abi, signer);
                 for (let i = 0; i < 4; i++) {
-                    _stakes.push(await contract.balanceOf("0xFA8166634569537ea716b7350383Ab262335994E", possibleStakes[i]));
+                    _stakes.push(await contract.balanceOf(address, possibleStakes[i]));
                 }
                 console.log("Stakes", _stakes);
                 setStakes(_stakes);
@@ -57,8 +57,9 @@ export function Positions() {
     }
 
     async function transferPosition() {
-        const contract = new ethers.Contract(POSITION_NFT_ADDRESS, contractData.abi, signer);
+        console.log("ADDRESS", address)
         try {
+            const contract = new ethers.Contract(POSITION_NFT_ADDRESS, contractData.abi, signer);
             await contract.safeTransferFrom(address, address, 1, 1, "");
         }
         catch (e) {
