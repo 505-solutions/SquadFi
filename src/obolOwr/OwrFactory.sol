@@ -3,6 +3,8 @@ pragma solidity ^0.8.19;
 
 import {OptimisticWithdrawalRecipient} from "./Owr.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "../interfaces/IReverseRegistar.sol";
+import "../interfaces/IENS.sol";
 
 import "forge-std/console.sol";
 
@@ -21,26 +23,42 @@ contract OptimisticWithdrawalRecipientFactory is Ownable {
         address indexed owr,
         address recoveryAddress,
         address principalRecipient,
-        uint256 threshold
+        uint256 threshold,
+        bytes32 subnode
     );
 
     event RegisterRewardRecipient(address rewardRecipient);
 
     uint256 internal constant ADDRESS_BITS = 160;
 
+    bytes32 parentEnsNode;
+    address ensRegistar;
     address depositContract;
 
     constructor(
         address initialOwner,
-        address _depositContract
+        address _depositContract,
+        string memory _ensName,
+        address _ensReverseRegistrar,
+        address _ensOwner,
+        address _ensRegistar
     ) Ownable(initialOwner) {
         depositContract = _depositContract;
+
+        parentEnsNode = IENSReverseRegistrar(_ensReverseRegistrar).setName(
+            _ensName
+        );
+        IENSReverseRegistrar(_ensReverseRegistrar).claim(_ensOwner);
+
+        ensRegistar = _ensRegistar;
     }
 
     function createOWRecipient(
         address recoveryAddress,
         address principalRecipient,
-        uint256 amountOfPrincipalStake
+        uint256 amountOfPrincipalStake,
+        address validatorSigner,
+        bytes32 subdomainLabel
     ) external returns (address owrAddress) {
         /// checks
 
@@ -60,11 +78,18 @@ contract OptimisticWithdrawalRecipientFactory is Ownable {
         );
         owrAddress = address(owr);
 
+        bytes32 subnode = IENS(ensRegistar).setSubnodeOwner(
+            parentEnsNode,
+            subdomainLabel,
+            validatorSigner
+        );
+
         emit CreateOWRecipient(
             address(owr),
             recoveryAddress,
             principalRecipient,
-            amountOfPrincipalStake
+            amountOfPrincipalStake,
+            subnode
         );
     }
 
