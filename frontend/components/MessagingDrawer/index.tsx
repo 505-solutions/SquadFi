@@ -1,5 +1,5 @@
 import React, {useEffect, useCallback} from 'react';
-import { Button, Group, Tooltip, Card, Text, Avatar, Stack, Space, TextInput, Form } from '@mantine/core';
+import { Button, Group, Tooltip, Card, Text, Avatar, Stack, Space, TextInput } from '@mantine/core';
 import {
     useManageSubscription,
     useSubscription,
