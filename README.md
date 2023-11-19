@@ -32,9 +32,9 @@ Our app integrates a Multisig "Safe" Wallet for seamless funding coordination an
 
 We have integrated “ENS Domains” using a proxy contract to deploy different withdrawal recipients for each squad. We are utilizing ENS Subdomains, so that each withdrawal recipient can have their own subdomain, and therefore are easily findable by the squad mates.
 
-### MEV Blocker
+### Cow Protocol/MEV Blocker
 
-We are prompting cats to utilize the power of MEV Blocker to prevent frontrunning and sandwich attacks via a hyperlinked button on our fronend as well as notification prompting visitors to get protected now!
+We are prompting cats to utilize the power of MEV Blocker to prevent frontrunning and sandwich attacks via a hyperlinked button on our frontend as well as notification prompting visitors to get protected now!
 
 ## Bounties
 
