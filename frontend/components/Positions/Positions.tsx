@@ -33,12 +33,17 @@ export function Positions() {
         }
         async function f() {
             let _stakes:number[] = [];
-            const contract = new ethers.Contract(POSITION_NFT_ADDRESS, contractData.abi, signer);
-            for (let i = 0; i < 4; i++) {
-                _stakes.push(await contract.balanceOf("0xFA8166634569537ea716b7350383Ab262335994E", possibleStakes[i]));
+            try {
+                const contract = new ethers.Contract(POSITION_NFT_ADDRESS, contractData.abi, signer);
+                for (let i = 0; i < 4; i++) {
+                    _stakes.push(await contract.balanceOf("0xFA8166634569537ea716b7350383Ab262335994E", possibleStakes[i]));
+                }
+                console.log("Stakes", _stakes);
+                setStakes(_stakes);
             }
-            console.log("Stakes", _stakes);
-            setStakes(_stakes);
+            catch (e) {
+                console.log(e);
+            }
         }
         f();
     }, [address])
