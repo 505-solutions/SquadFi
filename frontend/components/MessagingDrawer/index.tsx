@@ -22,7 +22,7 @@ export default function MessagingDrawer() {
     const form = useForm({
         initialValues: {
           title: 'Huston, we have a problem 🚨',
-          body: '... and we need to fix it!',
+          body: '... the system is in a state of purrplexity!!',
           squadId: null
         },
       });      
