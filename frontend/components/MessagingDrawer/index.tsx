@@ -21,7 +21,7 @@ const appDomain = process.env.NEXT_PUBLIC_APP_DOMAIN as string;
 export default function MessagingDrawer() {
     const form = useForm({
         initialValues: {
-          title: 'Huston, we have a problem! 🚨',
+          title: 'Huston, we have a problem 🚨',
           body: '... the system is in a state of purrplexity !!',
           squadId: null
         },
