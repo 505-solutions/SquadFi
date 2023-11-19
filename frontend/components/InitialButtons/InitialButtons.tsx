@@ -17,7 +17,7 @@ export function InitialButtons() {
                   gradient={{ from: '#EEAD36', to: '#E97333', deg: 90 }}
                   size="xl"
                 >
-                  Create cluster
+                  Create Squad
                 </Button>
             </Link>
 
@@ -31,7 +31,7 @@ export function InitialButtons() {
                   gradient={{ from: '#EEAD36', to: '#E97333', deg: 90 }}
                   size="xl"
                 >
-                  Explore clusters
+                  Explore Squads
                 </Button>
             </Link>
         </Group>
