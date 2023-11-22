@@ -14,7 +14,7 @@ Enhanced security comes from ensuring that no single node possesses complete aut
 ## Links
 **Slides:** Check out our deck [here](https://github.com/505-solutions/SquadFi/blob/main/SLIDES.md)
 
-**Demo:** Watch our video [here]()
+**Demo:** Watch our video [here](https://ethglobal.com/showcase/squadfi-vx2ky)
 
 **License:** MIT License
 
