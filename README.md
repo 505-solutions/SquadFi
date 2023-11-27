@@ -1,6 +1,13 @@
-# SquadFi-ETHGlobal: IST
-### Made during ETHIstanbul 2023 hackathon
+# SquadFi - ETHGlobal Istanbul
+
 SquadFi let’s you easily bootstrap censorship-resistant, permissionless, and trustless multi-paw validator squads 😺
+
+### Made during ETHIstanbul 2023 hackathon, winner of
+
+- 🏆 WalletConect - 2nd Place
+- 🏆 WalletConnect - Innovation Pool Prize
+- 🏆 MEV Blocker Madness
+
 
 ![banner (3)](https://github.com/505-solutions/SquadFi/assets/101796507/3f487da5-5703-43b9-a12d-4bdb754fd79f)
 
